@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="com.camunda.demo.InMemoryH2Test" time="0.6" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="com.camunda.demo.InMemoryH2Test" time="0.559" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.2.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_261\jre\bin"/>
     <property name="java.vm.version" value="25.261-b12"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\miche\Desktop\BPM\Camunda-MichelKhoury"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\miche\Desktop\BPM\BPMN-FYP"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\miche\Desktop\BPM\Camunda-MichelKhoury"/>
+    <property name="user.dir" value="C:\Users\miche\Desktop\BPM\BPMN-FYP"/>
     <property name="java.runtime.version" value="1.8.0_261-b12"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_261\jre\lib\endorsed"/>
@@ -31,7 +31,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\maven\lib\maven-event-listener.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_261\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Google\Chrome\Application;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\miche\anaconda3;C:\Users\miche\anaconda3\Library\mingw-w64\bin;C:\Users\miche\anaconda3\Library\usr\bin;C:\Users\miche\anaconda3\Library\bin;C:\Users\miche\anaconda3\Scripts;C:\Users\miche\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\miche\AppData\Local\Programs\Python\Python38-32\;C:\Users\miche\AppData\Local\Microsoft\WindowsApps;C:\Users\miche\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_261\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\miche\anaconda3;C:\Users\miche\anaconda3\Library\mingw-w64\bin;C:\Users\miche\anaconda3\Library\usr\bin;C:\Users\miche\anaconda3\Library\bin;C:\Users\miche\anaconda3\Scripts;C:\Users\miche\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\miche\AppData\Local\Programs\Python\Python38-32\;C:\Users\miche\AppData\Local\Microsoft\WindowsApps;C:\Users\miche\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\miche\AppData\Roaming\npm;."/>
     <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\maven\lib\maven3/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
@@ -64,6 +64,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.camunda.demo.InMemoryH2Test" name="testParsingAndDeployment" time="0.541"/>
-  <testcase classname="com.camunda.demo.InMemoryH2Test" name="testHappyPath" time="0.059"/>
+  <testcase classname="com.camunda.demo.InMemoryH2Test" name="testParsingAndDeployment" time="0.508"/>
+  <testcase classname="com.camunda.demo.InMemoryH2Test" name="testHappyPath" time="0.051"/>
 </testsuite>

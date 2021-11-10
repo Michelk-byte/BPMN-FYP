@@ -1,3 +1,4 @@
 com\camunda\demo\CamundaBpmProcessApplication.class
+com\camunda\demo\AskTDogForHelp.class
 com\camunda\demo\CheckWeatherDelegate.class
 com\camunda\demo\LoggerDelegate.class
