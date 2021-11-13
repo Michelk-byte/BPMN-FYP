@@ -33,6 +33,23 @@ mvn clean package
 of your application server e.g. `tomcat/webapps` or `wildfly/standalone/deployments`.
 For a faster 1-click (re-)deployment see the alternatives below.
 
+## Correlate a Message
+### Correlate without result
+#### Request
+POST /message
+
+```
+{
+  "messageName" : "aMessage",
+  "businessKey" : "aBusinessKey",
+  "processVariables" : {
+    "aVariable" : {"value" : "aNewValue", "type": "String"},
+    "anotherVariable" : {"value" : true, "type": "Boolean"}
+  }
+}
+```
+
+
 #### Apache Tomcat (using Maven AntRun Plugin)
 1. First copy the file `build.properties.example` to `build.properties`
 2. Edit the `build.properties` file and put the path to your Tomcat into `deploy.tomcat.dir`.
