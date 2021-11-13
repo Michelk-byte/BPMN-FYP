@@ -49,6 +49,8 @@ POST /message
 }
 ```
 
+https://docs.camunda.org/manual/7.16/reference/rest/message/post-message/
+
 
 #### Apache Tomcat (using Maven AntRun Plugin)
 1. First copy the file `build.properties.example` to `build.properties`
