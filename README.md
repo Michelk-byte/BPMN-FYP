@@ -36,7 +36,7 @@ For a faster 1-click (re-)deployment see the alternatives below.
 ## Correlate a Message
 ### Correlate without result
 #### Request
-POST localhost:8080/engine-rest//message
+POST localhost:8080/engine-rest/message
 
 ```
 {
