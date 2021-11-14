@@ -35,23 +35,23 @@
     <bpmn:startEvent id="StartEvent_1" name="Start project execution phase 1">
       <bpmn:outgoing>Flow_0f0pbb0</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_04t51e0" name="Interface Development">
+    <bpmn:userTask id="Activity_04t51e0" name="Interface Development" camunda:assignee="Student">
       <bpmn:incoming>Flow_0ueyph5</bpmn:incoming>
       <bpmn:outgoing>Flow_12mnv8s</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1vx9h1w" name="System Development">
+    <bpmn:userTask id="Activity_1vx9h1w" name="System Development" camunda:assignee="Student">
       <bpmn:incoming>Flow_18pfahj</bpmn:incoming>
       <bpmn:outgoing>Flow_19f8rfo</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0mt9hos" name="Start development phase">
+    <bpmn:userTask id="Activity_0mt9hos" name="Start development phase" camunda:assignee="Student">
       <bpmn:incoming>Flow_0wham3h</bpmn:incoming>
       <bpmn:outgoing>Flow_0vjnmck</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1hugy7s" name="Study the Design">
+    <bpmn:userTask id="Activity_1hugy7s" name="Study the Design" camunda:assignee="Student">
       <bpmn:incoming>Flow_0f0pbb0</bpmn:incoming>
       <bpmn:outgoing>Flow_0wham3h</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1bjxafx" name="Modify changes">
+    <bpmn:userTask id="Activity_1bjxafx" name="Modify changes" camunda:assignee="Student">
       <bpmn:incoming>Flow_1a4jbmj</bpmn:incoming>
       <bpmn:outgoing>Flow_1lx0vdy</bpmn:outgoing>
     </bpmn:userTask>
@@ -64,10 +64,10 @@
       <bpmn:incoming>Flow_16wxso5</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0nny4m8" name="Yes" sourceRef="Gateway_0mxrlje" targetRef="Gateway_1vfp464">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{ProjectmeetsRequirements}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{ProjectMeetsRequirements}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1a4jbmj" name="No" sourceRef="Gateway_0mxrlje" targetRef="Activity_1bjxafx">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not ProjectmeetsRequirements}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not ProjectMeetsRequirements}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ook0oc" sourceRef="Gateway_1mzoup6" targetRef="Activity_1u9l3dz" />
     <bpmn:sequenceFlow id="Flow_0vjnmck" sourceRef="Activity_0mt9hos" targetRef="Gateway_17dbkpx" />

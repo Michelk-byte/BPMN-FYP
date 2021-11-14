@@ -60,7 +60,7 @@
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_0mjr1yx" sourceRef="Gateway_0wupwff" targetRef="Event_10uiu5r" />
-    <bpmn:userTask id="Activity_1vlsfq4" name="Submit Progress Report">
+    <bpmn:userTask id="Activity_1vlsfq4" name="Submit Progress Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_0vz6nkq</bpmn:incoming>
       <bpmn:incoming>Flow_0vsiyhw</bpmn:incoming>
       <bpmn:incoming>Flow_1yq3gtm</bpmn:incoming>
@@ -83,7 +83,7 @@
       <bpmn:incoming>Flow_02l0ss2</bpmn:incoming>
       <bpmn:outgoing>Flow_1avrm77</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Activity_05i1xzi" name="Write Progress Report">
+    <bpmn:userTask id="Activity_05i1xzi" name="Write Progress Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_1azp8qb</bpmn:incoming>
       <bpmn:outgoing>Flow_1da9abm</bpmn:outgoing>
     </bpmn:userTask>
@@ -122,7 +122,7 @@
       <bpmn:incoming>Flow_02rzozy</bpmn:incoming>
       <bpmn:outgoing>Flow_15n4ssn</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Activity_0cwkl09" name="Write Final Report">
+    <bpmn:userTask id="Activity_0cwkl09" name="Write Final Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_0c33wwc</bpmn:incoming>
       <bpmn:outgoing>Flow_1l6xv77</bpmn:outgoing>
     </bpmn:userTask>
@@ -139,7 +139,7 @@
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_12640u6" sourceRef="Event_0irly8l" targetRef="Activity_0y7w37z" />
     <bpmn:sequenceFlow id="Flow_1griy6e" sourceRef="Event_10uiu5r" targetRef="Activity_0y7w37z" />
-    <bpmn:userTask id="Activity_0y7w37z" name="Submit Final Report">
+    <bpmn:userTask id="Activity_0y7w37z" name="Submit Final Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_1griy6e</bpmn:incoming>
       <bpmn:incoming>Flow_12640u6</bpmn:incoming>
       <bpmn:incoming>Flow_0kt6l9h</bpmn:incoming>
@@ -196,7 +196,7 @@
     <bpmn:endEvent id="Event_0mnmmd2" name="Project Execution Done">
       <bpmn:incoming>Flow_0uh43lm</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1ade7z1" name="Present Final Project">
+    <bpmn:userTask id="Activity_1ade7z1" name="Present Final Project" camunda:assignee="Student">
       <bpmn:incoming>Flow_0kphs1b</bpmn:incoming>
       <bpmn:outgoing>Flow_0uh43lm</bpmn:outgoing>
     </bpmn:userTask>
@@ -209,11 +209,11 @@
     <bpmn:sequenceFlow id="Flow_19q31te" sourceRef="Activity_12v8cvs" targetRef="Gateway_04u1b4p" />
     <bpmn:sequenceFlow id="Flow_13ff81v" sourceRef="Gateway_0s6dy9k" targetRef="Gateway_04u1b4p" />
     <bpmn:sequenceFlow id="Flow_0kphs1b" sourceRef="Gateway_04u1b4p" targetRef="Activity_1ade7z1" />
-    <bpmn:userTask id="Activity_1s8uo3g" name="Evaluate  Progress Report">
+    <bpmn:userTask id="Activity_1s8uo3g" name="Evaluate  Progress Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_1ngsd3d</bpmn:incoming>
       <bpmn:outgoing>Flow_0r44gje</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_12v8cvs" name="Evaluate Final Report">
+    <bpmn:userTask id="Activity_12v8cvs" name="Evaluate Final Report" camunda:assignee="Student">
       <bpmn:incoming>Flow_0vd3lan</bpmn:incoming>
       <bpmn:outgoing>Flow_19q31te</bpmn:outgoing>
     </bpmn:userTask>

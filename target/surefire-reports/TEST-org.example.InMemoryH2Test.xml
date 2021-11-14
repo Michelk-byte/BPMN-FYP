@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="org.example.InMemoryH2Test" time="0.563" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="org.example.InMemoryH2Test" time="0.615" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.2.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -47,7 +47,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_261\jre"/>
-    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2021.2.3 clean validate compile test package verify install"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2021.2.3 clean validate compile test package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -64,6 +64,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.example.InMemoryH2Test" name="testParsingAndDeployment" time="0.5"/>
-  <testcase classname="org.example.InMemoryH2Test" name="testHappyPath" time="0.063"/>
+  <testcase classname="org.example.InMemoryH2Test" name="testParsingAndDeployment" time="0.556"/>
+  <testcase classname="org.example.InMemoryH2Test" name="testHappyPath" time="0.059"/>
 </testsuite>

@@ -67,15 +67,15 @@
       <bpmn:incoming>Flow_16v11mx</bpmn:incoming>
       <bpmn:outgoing>Flow_0pbkwad</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_0uhw0ru" name="Start Testing phase">
+    <bpmn:userTask id="Activity_0uhw0ru" name="Start Testing phase" camunda:assignee="Student">
       <bpmn:incoming>Flow_100fu0z</bpmn:incoming>
       <bpmn:outgoing>Flow_11o7734</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0zcta8a" name="Document Code">
+    <bpmn:userTask id="Activity_0zcta8a" name="Document Code" camunda:assignee="Student">
       <bpmn:incoming>Flow_19khzaw</bpmn:incoming>
       <bpmn:outgoing>Flow_17p4k5g</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1u67940" name="Write and Build Test Coverages">
+    <bpmn:userTask id="Activity_1u67940" name="Write and Build Test Coverages" camunda:assignee="Student">
       <bpmn:incoming>Flow_11o7734</bpmn:incoming>
       <bpmn:outgoing>Flow_16v11mx</bpmn:outgoing>
     </bpmn:userTask>
@@ -85,7 +85,7 @@
       <bpmn:incoming>Flow_1s4ljqo</bpmn:incoming>
       <bpmn:outgoing>Flow_0n6curc</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:userTask id="Activity_0gksvxg" name="Fix Bug">
+    <bpmn:userTask id="Activity_0gksvxg" name="Fix Bug" camunda:assignee="Student">
       <bpmn:incoming>Flow_03at1ox</bpmn:incoming>
       <bpmn:outgoing>Flow_1s4ljqo</bpmn:outgoing>
     </bpmn:userTask>
@@ -100,24 +100,24 @@
     <bpmn:startEvent id="Event_1tminba" name="Start project execution phase 2">
       <bpmn:outgoing>Flow_023bq08</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_017615i" name="Integration">
+    <bpmn:userTask id="Activity_017615i" name="Integration" camunda:assignee="Student">
       <bpmn:incoming>Flow_00yefif</bpmn:incoming>
       <bpmn:incoming>Flow_1lnh0sg</bpmn:incoming>
       <bpmn:outgoing>Flow_1dc1ink</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1ofv6sa" name="Push commit changes">
+    <bpmn:userTask id="Activity_1ofv6sa" name="Push commit changes" camunda:assignee="Student">
       <bpmn:incoming>Flow_0e0kva5</bpmn:incoming>
       <bpmn:outgoing>Flow_1lnh0sg</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1jp6skl" name="Deployment">
+    <bpmn:userTask id="Activity_1jp6skl" name="Deployment" camunda:assignee="Student">
       <bpmn:incoming>Flow_1dc1ink</bpmn:incoming>
       <bpmn:outgoing>Flow_0mgxpe3</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0gn3wge" name="End of Testing">
+    <bpmn:userTask id="Activity_0gn3wge" name="End of Testing" camunda:assignee="Student">
       <bpmn:incoming>Flow_0n6curc</bpmn:incoming>
       <bpmn:outgoing>Flow_11br53v</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1idme6y" name="Get Approval">
+    <bpmn:userTask id="Activity_1idme6y" name="Get Approval" camunda:assignee="Student">
       <bpmn:incoming>Flow_11br53v</bpmn:incoming>
       <bpmn:outgoing>Flow_1smlci5</bpmn:outgoing>
     </bpmn:userTask>
@@ -129,7 +129,7 @@
       <bpmn:outgoing>Flow_1j9jpul</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0s58c9n" messageRef="Message_114hq4c" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:userTask id="Activity_0ahdldj" name="Receive Approval Response">
+    <bpmn:userTask id="Activity_0ahdldj" name="Receive Approval Response" camunda:assignee="Student">
       <bpmn:incoming>Flow_1j9jpul</bpmn:incoming>
       <bpmn:outgoing>Flow_12lc18k</bpmn:outgoing>
     </bpmn:userTask>

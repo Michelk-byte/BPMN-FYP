@@ -8,7 +8,11 @@ import java.util.Random;
 public class ReviewSubmittedProjectProposalDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        Random rando = new Random();
-        delegateExecution.setVariable("proposalMeetsRequirement", rando.nextBoolean());
+        int committeeReviewal = (int) delegateExecution.getVariable("committeeReviewal");
+        if (committeeReviewal > 5) {
+            delegateExecution.setVariable("proposalMeetsRequirement", true);
+        } else {
+            delegateExecution.setVariable("proposalMeetsRequirement", false);
+        }
     }
 }

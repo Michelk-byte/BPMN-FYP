@@ -5,7 +5,7 @@
   </bpmn:collaboration>
   <bpmn:process id="CallForProject" name="CallForProject" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1p7k8gn">
-      <bpmn:lane id="Lane_1dmf5o8" name="FYP Commitee">
+      <bpmn:lane id="Lane_1dmf5o8" name="FYP Committee">
         <bpmn:flowNodeRef>Event_14bljck</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0v3it8k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0i0ebdv</bpmn:flowNodeRef>
@@ -35,11 +35,11 @@
       <bpmn:outgoing>Flow_02kgsct</bpmn:outgoing>
       <bpmn:outgoing>Flow_0mp6umz</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_0boyfzi" name="Validate Number of Students in Project">
+    <bpmn:userTask id="Activity_0boyfzi" name="Validate Number of Students in Project" camunda:assignee="FYP Committee">
       <bpmn:incoming>Flow_0mp6umz</bpmn:incoming>
       <bpmn:outgoing>Flow_17522ds</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0z17ftc" name="Return Project Application">
+    <bpmn:userTask id="Activity_0z17ftc" name="Return Project Application" camunda:assignee="FYP Committee">
       <bpmn:incoming>Flow_02kgsct</bpmn:incoming>
       <bpmn:outgoing>Flow_088q1l4</bpmn:outgoing>
     </bpmn:userTask>
@@ -47,7 +47,7 @@
       <bpmn:incoming>Flow_13ysaf7</bpmn:incoming>
       <bpmn:outgoing>Flow_07xq1ua</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:userTask id="Activity_1a3vkb2" name="Fill Project Description Template (project proposal)">
+    <bpmn:userTask id="Activity_1a3vkb2" name="Fill Project Description Template (project proposal)" camunda:assignee="Advisor">
       <bpmn:incoming>Flow_0jccocf</bpmn:incoming>
       <bpmn:outgoing>Flow_13ysaf7</bpmn:outgoing>
     </bpmn:userTask>
@@ -59,7 +59,7 @@
     <bpmn:startEvent id="Event_0ksvl6v" name="Call For Project Sent">
       <bpmn:outgoing>Flow_03d0g70</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1m4nwwq" name="Validate Project">
+    <bpmn:userTask id="Activity_1m4nwwq" name="Validate Project" camunda:assignee="FYP Committee">
       <bpmn:incoming>Flow_17522ds</bpmn:incoming>
       <bpmn:outgoing>Flow_0p4svtv</bpmn:outgoing>
     </bpmn:userTask>

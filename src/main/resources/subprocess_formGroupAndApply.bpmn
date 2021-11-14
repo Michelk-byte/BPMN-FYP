@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qa4c26" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qa4c26" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_AllocateGroup">
     <bpmn:participant id="Participant_0g0g0ex" name="Student" processRef="allocateGroup" />
   </bpmn:collaboration>
@@ -12,19 +12,19 @@
     <bpmn:startEvent id="Event_ProjectsPublished" name="Projects Published">
       <bpmn:outgoing>Flow_0v8b7s4</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_0nlmohm" name="Check&#10;Available Projects">
+    <bpmn:userTask id="Activity_0nlmohm" name="Check&#10;Available Projects" camunda:assignee="Student">
       <bpmn:incoming>Flow_0v8b7s4</bpmn:incoming>
       <bpmn:outgoing>Flow_1ozdegt</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_018lzsy" name="Form Group">
+    <bpmn:userTask id="Activity_018lzsy" name="Form Group" camunda:assignee="Student">
       <bpmn:incoming>Flow_1ozdegt</bpmn:incoming>
       <bpmn:outgoing>Flow_0zfqzro</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_07yzuy5" name="Select Two Projects">
+    <bpmn:userTask id="Activity_07yzuy5" name="Select Two Projects" camunda:assignee="Student">
       <bpmn:incoming>Flow_0zfqzro</bpmn:incoming>
       <bpmn:outgoing>Flow_10jpdjf</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1m6kuxk" name="Apply for Project">
+    <bpmn:userTask id="Activity_1m6kuxk" name="Apply for Project" camunda:assignee="Student">
       <bpmn:incoming>Flow_10jpdjf</bpmn:incoming>
       <bpmn:outgoing>Flow_0e28jdd</bpmn:outgoing>
     </bpmn:userTask>
