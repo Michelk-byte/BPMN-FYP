@@ -39,7 +39,7 @@
       <bpmn:incoming>Flow_0mp6umz</bpmn:incoming>
       <bpmn:outgoing>Flow_17522ds</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="Activity_04hiubz" name="Submit Project Proposal" camunda:class="org.example.LoggerDelegate">
+    <bpmn:sendTask id="Activity_04hiubz" name="Submit Project Proposal" camunda:class="org.example.utils.LoggerDelegate">
       <bpmn:incoming>Flow_13ysaf7</bpmn:incoming>
       <bpmn:outgoing>Flow_07xq1ua</bpmn:outgoing>
     </bpmn:sendTask>
@@ -77,7 +77,7 @@
       <bpmn:incoming>Flow_17522ds</bpmn:incoming>
       <bpmn:outgoing>Flow_0p4svtv</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sendTask id="Activity_0z17ftc" name="Return Project Application" camunda:class="org.example.LoggerDelegate">
+    <bpmn:sendTask id="Activity_0z17ftc" name="Return Project Application" camunda:class="org.example.utils.LoggerDelegate">
       <bpmn:incoming>Flow_02kgsct</bpmn:incoming>
       <bpmn:outgoing>Flow_088q1l4</bpmn:outgoing>
     </bpmn:sendTask>

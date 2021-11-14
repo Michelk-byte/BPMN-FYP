@@ -9,4 +9,14 @@ public class CamundaConstants {
             new ArrayList<>(Arrays.asList("Web Application", "3", "0")),
             new ArrayList<>(Arrays.asList("Blockchain", "2", "0"))
     ));
+
+    public static StringBuilder printArrayOfArray(ArrayList<ArrayList<String>> projects) {
+        StringBuilder projectsString = new StringBuilder();
+        projectsString.append("[ ");
+        for (List<String> project : CamundaConstants.projects) {
+            projectsString.append(project.toString());
+        }
+        projectsString.append("] ");
+        return projectsString;
+    }
 }

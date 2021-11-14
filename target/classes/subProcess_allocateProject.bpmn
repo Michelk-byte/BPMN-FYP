@@ -59,7 +59,7 @@
       <bpmn:incoming>Flow_0lz0sol</bpmn:incoming>
       <bpmn:outgoing>Flow_02ndtkj</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Activity_0mzhnal" name="Inform Assigned Students and Advisor" camunda:class="org.example.LoggerDelegate">
+    <bpmn:sendTask id="Activity_0mzhnal" name="Inform Assigned Students and Advisor" camunda:class="org.example.utils.LoggerDelegate">
       <bpmn:incoming>Flow_02ndtkj</bpmn:incoming>
       <bpmn:outgoing>Flow_0j3akno</bpmn:outgoing>
     </bpmn:sendTask>

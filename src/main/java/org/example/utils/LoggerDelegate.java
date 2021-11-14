@@ -16,16 +16,6 @@ public class LoggerDelegate implements JavaDelegate {
   private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
   
   public void execute(DelegateExecution execution) throws Exception {
-    StringBuilder projects = new StringBuilder();
-    projects.append("[ ");
-    for (List<String> l1 : CamundaConstants.projects) {
-      projects.append("[ ");
-      for (String n : l1) {
-        projects.append(n).append(" ,");
-      }
-      projects.append("] ");
-    }
-    projects.append("] ");
 
     LOGGER.info("\n\n  ... LoggerDelegate invoked by "
             + "processDefinitionId=" + execution.getProcessDefinitionId()
@@ -34,7 +24,7 @@ public class LoggerDelegate implements JavaDelegate {
             + ", processInstanceId=" + execution.getProcessInstanceId()
             + ", businessKey=" + execution.getProcessBusinessKey()
             + ", executionId=" + execution.getId()
-            + ", projects= " + projects
+            + ", projects= " + CamundaConstants.printArrayOfArray(CamundaConstants.projects)
             + " \n\n");
     
   }

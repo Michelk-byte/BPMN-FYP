@@ -13,20 +13,10 @@ public class CheckAvailableProjectsLoggerDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        StringBuilder projects = new StringBuilder();
-        projects.append("[ ");
-        for (List<String> l1 : CamundaConstants.projects) {
-            projects.append("[ ");
-            for (String n : l1) {
-                projects.append(n).append(", ");
-            }
-            projects.append("] ");
-        }
-        projects.append("] ");
 
-        LOGGER.info("\n\n  ... LoggerDelegate invoked by "
-                + "processDefinitionId=" + delegateExecution.getProcessDefinitionId()
-                + ", projects= " + projects
+
+        LOGGER.info("\n\n  ..."
+                + ", projectsAvailable= " + CamundaConstants.printArrayOfArray(CamundaConstants.projects)
                 + " \n\n");
     }
 }
