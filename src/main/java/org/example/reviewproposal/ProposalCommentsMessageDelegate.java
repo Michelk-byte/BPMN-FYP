@@ -1,4 +1,4 @@
-package org.example;
+package org.example.reviewproposal;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;

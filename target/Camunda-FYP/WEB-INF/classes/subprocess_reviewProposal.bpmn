@@ -12,14 +12,10 @@
         <bpmn:flowNodeRef>Event_0ek1dn0</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0enrpqv" name="Student">
-        <bpmn:flowNodeRef>Activity_1uwhfx1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ifn2w7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1uwhfx1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:task id="Activity_1uwhfx1" name="Approve Proposal">
-      <bpmn:incoming>Flow_03vofzw</bpmn:incoming>
-      <bpmn:outgoing>Flow_18iaeh2</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:endEvent id="Event_0ifn2w7" name="Proposal Approved">
       <bpmn:incoming>Flow_18iaeh2</bpmn:incoming>
     </bpmn:endEvent>
@@ -48,6 +44,10 @@
       <bpmn:incoming>Flow_09lnsg8</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1hoyejd" messageRef="Message_1vhohbb" camunda:class="org.example.ProposalCommentsMessageDelegate" />
     </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1uwhfx1" name="Approve Proposal" camunda:assignee="Student">
+      <bpmn:incoming>Flow_03vofzw</bpmn:incoming>
+      <bpmn:outgoing>Flow_18iaeh2</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:error id="Error_1jnn9m7" name="Error_ProposalhasComments" />
   <bpmn:message id="Message_1vhohbb" name="Message_ProposalComments" />
@@ -89,9 +89,6 @@
         <di:waypoint x="690" y="130" />
         <di:waypoint x="762" y="130" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_1uwhfx1_di" bpmnElement="Activity_1uwhfx1">
-        <dc:Bounds x="590" y="90" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ifn2w7_di" bpmnElement="Event_0ifn2w7">
         <dc:Bounds x="762" y="112" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -115,6 +112,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="597" y="275" width="67" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j3hp97_di" bpmnElement="Activity_1uwhfx1">
+        <dc:Bounds x="590" y="90" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

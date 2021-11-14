@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qa4c26" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qa4c26" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_AllocateGroup">
     <bpmn:participant id="Participant_0g0g0ex" name="Student" processRef="allocateGroup" />
   </bpmn:collaboration>
@@ -7,44 +7,66 @@
     <bpmn:sequenceFlow id="Flow_1ozdegt" sourceRef="Activity_0nlmohm" targetRef="Activity_018lzsy" />
     <bpmn:sequenceFlow id="Flow_0zfqzro" sourceRef="Activity_018lzsy" targetRef="Activity_07yzuy5" />
     <bpmn:sequenceFlow id="Flow_0v8b7s4" sourceRef="Event_ProjectsPublished" targetRef="Activity_0nlmohm" />
-    <bpmn:sequenceFlow id="Flow_10jpdjf" sourceRef="Activity_07yzuy5" targetRef="Activity_1m6kuxk" />
-    <bpmn:sequenceFlow id="Flow_0e28jdd" sourceRef="Activity_1m6kuxk" targetRef="Event_ProjectApplicationSent" />
+    <bpmn:sequenceFlow id="Flow_10jpdjf" sourceRef="Activity_07yzuy5" targetRef="Activity_1bvda8z" />
+    <bpmn:sequenceFlow id="Flow_0e28jdd" sourceRef="Activity_1m6kuxk" targetRef="Activity_0rhpzab" />
     <bpmn:startEvent id="Event_ProjectsPublished" name="Projects Published">
       <bpmn:outgoing>Flow_0v8b7s4</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_0nlmohm" name="Check&#10;Available Projects" camunda:assignee="Student">
-      <bpmn:incoming>Flow_0v8b7s4</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ozdegt</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="Activity_018lzsy" name="Form Group" camunda:assignee="Student">
       <bpmn:incoming>Flow_1ozdegt</bpmn:incoming>
       <bpmn:outgoing>Flow_0zfqzro</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_07yzuy5" name="Select Two Projects" camunda:assignee="Student">
+    <bpmn:userTask id="Activity_07yzuy5" name="Choose Two Projects" camunda:assignee="Student">
       <bpmn:incoming>Flow_0zfqzro</bpmn:incoming>
+      <bpmn:incoming>Flow_183rj0n</bpmn:incoming>
       <bpmn:outgoing>Flow_10jpdjf</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1m6kuxk" name="Apply for Project" camunda:assignee="Student">
+    <bpmn:sequenceFlow id="Flow_0nyidb9" sourceRef="Activity_0rhpzab" targetRef="Event_ProjectApplicationSent" />
+    <bpmn:sequenceFlow id="Flow_1yyqqno" sourceRef="Activity_1bvda8z" targetRef="Gateway_1jl1hk7" />
+    <bpmn:serviceTask id="Activity_1bvda8z" name="Check Existence of Projects Selected" camunda:class="org.example.formgroupandapply.CheckExistenceProjectsDelegate">
       <bpmn:incoming>Flow_10jpdjf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yyqqno</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_ProjectApplicationSent" name="Project Application Submitted">
+      <bpmn:incoming>Flow_0nyidb9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_0rhpzab" name="Save Selection" camunda:class="org.example.formgroupandapply.SaveProjectSelectionDelegate">
+      <bpmn:incoming>Flow_0e28jdd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nyidb9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1m6kuxk" name="Apply for Project" camunda:assignee="Student">
+      <bpmn:incoming>Flow_1y03gn5</bpmn:incoming>
       <bpmn:outgoing>Flow_0e28jdd</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:endEvent id="Event_ProjectApplicationSent" name="Project Application Submitted">
-      <bpmn:incoming>Flow_0e28jdd</bpmn:incoming>
-    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1jl1hk7" name="Exist?">
+      <bpmn:incoming>Flow_1yyqqno</bpmn:incoming>
+      <bpmn:outgoing>Flow_1y03gn5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_183rj0n</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1y03gn5" name="Yes" sourceRef="Gateway_1jl1hk7" targetRef="Activity_1m6kuxk">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{projectsExist}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_183rj0n" name="No" sourceRef="Gateway_1jl1hk7" targetRef="Activity_07yzuy5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not projectsExist}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0nlmohm" name="Check&#10;Available Projects" camunda:class="org.example.formgroupandapply.CheckAvailableProjectsLoggerDelegate">
+      <bpmn:incoming>Flow_0v8b7s4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ozdegt</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_11xg06t" name="Message_ProjectApplicationSent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_AllocateGroup">
       <bpmndi:BPMNShape id="Participant_0g0g0ex_di" bpmnElement="Participant_0g0g0ex" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="920" height="210" />
+        <dc:Bounds x="160" y="80" width="1350" height="290" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0e28jdd_di" bpmnElement="Flow_0e28jdd">
-        <di:waypoint x="920" y="180" />
-        <di:waypoint x="992" y="180" />
+        <di:waypoint x="1220" y="180" />
+        <di:waypoint x="1290" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10jpdjf_di" bpmnElement="Flow_10jpdjf">
         <di:waypoint x="750" y="180" />
-        <di:waypoint x="820" y="180" />
+        <di:waypoint x="810" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0v8b7s4_di" bpmnElement="Flow_0v8b7s4">
         <di:waypoint x="248" y="180" />
@@ -58,14 +80,35 @@
         <di:waypoint x="400" y="180" />
         <di:waypoint x="480" y="180" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nyidb9_di" bpmnElement="Flow_0nyidb9">
+        <di:waypoint x="1390" y="180" />
+        <di:waypoint x="1452" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yyqqno_di" bpmnElement="Flow_1yyqqno">
+        <di:waypoint x="910" y="180" />
+        <di:waypoint x="975" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y03gn5_di" bpmnElement="Flow_1y03gn5">
+        <di:waypoint x="1025" y="180" />
+        <di:waypoint x="1120" y="180" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1064" y="162" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_183rj0n_di" bpmnElement="Flow_183rj0n">
+        <di:waypoint x="1000" y="205" />
+        <di:waypoint x="1000" y="310" />
+        <di:waypoint x="700" y="310" />
+        <di:waypoint x="700" y="220" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="843" y="292" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1rbilrt_di" bpmnElement="Event_ProjectsPublished">
         <dc:Bounds x="212" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="206" y="205" width="49" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_05fwguh_di" bpmnElement="Activity_0nlmohm">
-        <dc:Bounds x="300" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0182unt_di" bpmnElement="Activity_018lzsy">
         <dc:Bounds x="480" y="140" width="100" height="80" />
@@ -73,14 +116,29 @@
       <bpmndi:BPMNShape id="Activity_0uv70w8_di" bpmnElement="Activity_07yzuy5">
         <dc:Bounds x="650" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0zaigy8_di" bpmnElement="Activity_1m6kuxk">
-        <dc:Bounds x="820" y="140" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_1rl1eqx_di" bpmnElement="Activity_1bvda8z">
+        <dc:Bounds x="810" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1wdfstu_di" bpmnElement="Event_ProjectApplicationSent">
-        <dc:Bounds x="992" y="162" width="36" height="36" />
+        <dc:Bounds x="1452" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="983" y="205" width="54" height="40" />
+          <dc:Bounds x="1443" y="205" width="54" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bxqf19_di" bpmnElement="Activity_0rhpzab">
+        <dc:Bounds x="1290" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zaigy8_di" bpmnElement="Activity_1m6kuxk">
+        <dc:Bounds x="1120" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1jl1hk7_di" bpmnElement="Gateway_1jl1hk7" isMarkerVisible="true">
+        <dc:Bounds x="975" y="155" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="984" y="131" width="31" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zctddk_di" bpmnElement="Activity_0nlmohm">
+        <dc:Bounds x="300" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

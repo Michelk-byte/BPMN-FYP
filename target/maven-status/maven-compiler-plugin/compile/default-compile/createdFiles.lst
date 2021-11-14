@@ -1,9 +1,13 @@
-org\example\InformAdvisorDelegate.class
 org\example\CamundaBpmProcessApplication.class
-org\example\LaunchTestCoveragesDelegate.class
+org\example\allocateproject\CheckConflictsDelegate.class
 org\example\ReviewProposalDelegate.class
-org\example\CheckConflictsDelegate.class
 org\example\ProposalCommentsMessageDelegate.class
-org\example\ReviewSubmittedProjectProposalDelegate.class
+org\example\callforproject\ReviewSubmittedProjectProposalDelegate.class
+org\example\formgroupandapply\SaveProjectSelectionDelegate.class
 org\example\ReviewProjectRequirementsDelegate.class
+org\example\formgroupandapply\CheckExistenceProjectsDelegate.class
+org\example\callforproject\ValidateProjectDelegate.class
+org\example\LaunchTestCoveragesDelegate.class
+org\example\CamundaConstants.class
+org\example\formgroupandapply\CheckAvailableProjectsLoggerDelegate.class
 org\example\LoggerDelegate.class

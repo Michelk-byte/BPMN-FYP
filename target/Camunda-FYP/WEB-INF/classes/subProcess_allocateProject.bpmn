@@ -19,14 +19,14 @@
         <bpmn:flowNodeRef>Gateway_1sl571f</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0oocc0b</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_0cdo89g" name="FYP Commitee">
+      <bpmn:lane id="Lane_0cdo89g" name="FYP Committee">
         <bpmn:flowNodeRef>Event_09uxxbh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1x1n3if</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_159pmec</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0xkx1gp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1viqzrp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0mzhnal</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0r223kq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_159pmec</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="Gateway_11xutl2">
@@ -37,19 +37,15 @@
     <bpmn:startEvent id="Event_09uxxbh" name="Project Allocation Started">
       <bpmn:outgoing>Flow_1xre2ul</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_0cuco44" name="Choose Group">
+    <bpmn:userTask id="Activity_0cuco44" name="Choose Group" camunda:assignee="Advisor">
       <bpmn:incoming>Flow_0fz4r45</bpmn:incoming>
       <bpmn:outgoing>Flow_1re5dmg</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1x1n3if" name="Pick Random Group">
+    <bpmn:userTask id="Activity_1x1n3if" name="Pick Random Group" camunda:assignee="FYP Committee">
       <bpmn:incoming>Flow_007z7rj</bpmn:incoming>
       <bpmn:outgoing>Flow_1ltupsa</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_159pmec" name="Inform Advisor" camunda:class="org.example.InformAdvisorDelegate">
-      <bpmn:incoming>Flow_186lalj</bpmn:incoming>
-      <bpmn:outgoing>Flow_1le5kho</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0xkx1gp" name="Check Conflicts" camunda:class="org.example.CheckConflictsDelegate">
+    <bpmn:serviceTask id="Activity_0xkx1gp" name="Check Conflicts" camunda:class="org.example.allocateproject.CheckConflictsDelegate">
       <bpmn:incoming>Flow_1xre2ul</bpmn:incoming>
       <bpmn:outgoing>Flow_0elg3kj</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -63,7 +59,7 @@
       <bpmn:incoming>Flow_0lz0sol</bpmn:incoming>
       <bpmn:outgoing>Flow_02ndtkj</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Activity_0mzhnal" name="Inform Assigned Students and Advisor" camunda:class="org.example.LoggerDelgate">
+    <bpmn:sendTask id="Activity_0mzhnal" name="Inform Assigned Students and Advisor" camunda:class="org.example.LoggerDelegate">
       <bpmn:incoming>Flow_02ndtkj</bpmn:incoming>
       <bpmn:outgoing>Flow_0j3akno</bpmn:outgoing>
     </bpmn:sendTask>
@@ -82,7 +78,7 @@
       <bpmn:outgoing>Flow_0tb6rqs</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_08lfzh7" messageRef="Message_078ero8" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:userTask id="Activity_0k6fw8u" name="Sign Project">
+    <bpmn:userTask id="Activity_0k6fw8u" name="Sign Project" camunda:assignee="Advisor">
       <bpmn:incoming>Flow_0tb6rqs</bpmn:incoming>
       <bpmn:outgoing>Flow_1rl5kct</bpmn:outgoing>
     </bpmn:userTask>
@@ -117,18 +113,22 @@
     <bpmn:sequenceFlow id="Flow_1xre2ul" sourceRef="Event_09uxxbh" targetRef="Activity_0xkx1gp" />
     <bpmn:sequenceFlow id="Flow_00qdxnu" sourceRef="Gateway_02mqxlv" targetRef="Gateway_1viqzrp" />
     <bpmn:sequenceFlow id="Flow_0lz0sol" name="No Conflicts" sourceRef="Gateway_0r223kq" targetRef="Gateway_1viqzrp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{projectAllocationhasConflicts}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not projectAllocationHasConflicts}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_02ndtkj" sourceRef="Gateway_1viqzrp" targetRef="Activity_0mzhnal" />
     <bpmn:sequenceFlow id="Flow_0j3akno" sourceRef="Activity_0mzhnal" targetRef="Gateway_1gf6h48" />
     <bpmn:sequenceFlow id="Flow_0elg3kj" sourceRef="Activity_0xkx1gp" targetRef="Gateway_0r223kq" />
     <bpmn:sequenceFlow id="Flow_186lalj" name="Conflicts" sourceRef="Gateway_0r223kq" targetRef="Activity_159pmec">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not projectAllocationhasConflicts}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{projectAllocationHasConflicts}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1le5kho" sourceRef="Activity_159pmec" targetRef="Gateway_11xutl2" />
-    <bpmn:userTask id="Activity_1g7ts5i" name="Sign Project">
+    <bpmn:userTask id="Activity_1g7ts5i" name="Sign Project" camunda:assignee="Student">
       <bpmn:incoming>Flow_1554gt6</bpmn:incoming>
       <bpmn:outgoing>Flow_0oiag1e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_159pmec" name="Inform Advisor" camunda:assignee="FYP Committee">
+      <bpmn:incoming>Flow_186lalj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1le5kho</bpmn:outgoing>
     </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_1x5xct9" name="Message_ProjectApplicationReceived" />
@@ -260,9 +260,6 @@
       <bpmndi:BPMNShape id="Activity_0e32dd4_di" bpmnElement="Activity_1x1n3if">
         <dc:Bounds x="680" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1gjkk0r_di" bpmnElement="Activity_159pmec">
-        <dc:Bounds x="430" y="380" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0fwcql1_di" bpmnElement="Activity_0xkx1gp">
         <dc:Bounds x="300" y="500" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -307,6 +304,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1v7p946_di" bpmnElement="Activity_1g7ts5i">
         <dc:Bounds x="1390" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gxmh94_di" bpmnElement="Activity_159pmec">
+        <dc:Bounds x="430" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

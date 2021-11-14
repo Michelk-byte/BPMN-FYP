@@ -5,13 +5,6 @@
     <bpmn:endEvent id="Event_ProjectApplicationsClosed" name="Project Applications Closed">
       <bpmn:incoming>Flow_1m4glzy</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:intermediateCatchEvent id="Event_09zam3h" name="November 29th, 2021">
-      <bpmn:incoming>Flow_0dvlgq3</bpmn:incoming>
-      <bpmn:outgoing>Flow_15oge3b</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1jn6939">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2021-11-29T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
     <bpmn:startEvent id="Event_CallForProjectSent" name="Call For Project Sent">
       <bpmn:outgoing>Flow_1pomo9q</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0h8g2k1" messageRef="Message_1p959he" />
@@ -22,7 +15,7 @@
         <camunda:out variables="all" />
         <camunda:in businessKey="#{execution.processBusinessKey}" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_03wd9xw</bpmn:incoming>
+      <bpmn:incoming>Flow_1d1gg1d</bpmn:incoming>
       <bpmn:outgoing>Flow_0jthsze</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:callActivity id="Activity_1nqj3if" name="Form Group and Apply For Project" calledElement="allocateGroup">
@@ -79,9 +72,9 @@
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_1m4glzy" sourceRef="Event_05azfvg" targetRef="Event_ProjectApplicationsClosed" />
     <bpmn:sequenceFlow id="Flow_1dn7rnc" sourceRef="Activity_07g5096" targetRef="Activity_1nqj3if" />
-    <bpmn:sequenceFlow id="Flow_1d1gg1d" sourceRef="Activity_1nqj3if" targetRef="Event_0tyy4k2" />
+    <bpmn:sequenceFlow id="Flow_1d1gg1d" sourceRef="Activity_1nqj3if" targetRef="Activity_1cky61b" />
     <bpmn:sequenceFlow id="Flow_1pomo9q" sourceRef="Event_CallForProjectSent" targetRef="Activity_1haqjtf" />
-    <bpmn:sequenceFlow id="Flow_0dvlgq3" sourceRef="Activity_1haqjtf" targetRef="Event_09zam3h" />
+    <bpmn:sequenceFlow id="Flow_0dvlgq3" sourceRef="Activity_1haqjtf" targetRef="Activity_07g5096" />
     <bpmn:sequenceFlow id="Flow_07e7hyr" sourceRef="Event_0ykm0wl" targetRef="Activity_077plq6" />
     <bpmn:sequenceFlow id="Flow_0jthsze" sourceRef="Activity_1cky61b" targetRef="Activity_01qbd63" />
     <bpmn:sequenceFlow id="Flow_06f4nlt" sourceRef="Activity_01qbd63" targetRef="Activity_19d8f4x" />
@@ -97,7 +90,6 @@
       <bpmn:incoming>Flow_1pomo9q</bpmn:incoming>
       <bpmn:outgoing>Flow_0dvlgq3</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_15oge3b" sourceRef="Event_09zam3h" targetRef="Activity_07g5096" />
     <bpmn:endEvent id="Event_ProjectRejected" name="Project Rejected">
       <bpmn:incoming>Flow_08pmc4v</bpmn:incoming>
     </bpmn:endEvent>
@@ -109,21 +101,13 @@
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:userTask id="Activity_07g5096" name="Publish Projects on Moodle">
-      <bpmn:incoming>Flow_15oge3b</bpmn:incoming>
+      <bpmn:incoming>Flow_0dvlgq3</bpmn:incoming>
       <bpmn:outgoing>Flow_1dn7rnc</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_077plq6" name="Reject Project">
       <bpmn:incoming>Flow_07e7hyr</bpmn:incoming>
       <bpmn:outgoing>Flow_08pmc4v</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_03wd9xw" sourceRef="Event_0tyy4k2" targetRef="Activity_1cky61b" />
-    <bpmn:intermediateCatchEvent id="Event_0tyy4k2" name="December 6th, 2021">
-      <bpmn:incoming>Flow_1d1gg1d</bpmn:incoming>
-      <bpmn:outgoing>Flow_03wd9xw</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1ehk71j">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2021-12-6T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_0p7h8v2" sourceRef="Activity_1tfe0we" targetRef="Activity_15hkuns" />
     <bpmn:callActivity id="Activity_1tfe0we" name="Publish and Present Proposal" calledElement="PublishPresentProposal">
       <bpmn:extensionElements>
@@ -159,17 +143,9 @@
         <di:waypoint x="240" y="510" />
         <di:waypoint x="240" y="640" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_03wd9xw_di" bpmnElement="Flow_03wd9xw">
-        <di:waypoint x="912" y="610" />
-        <di:waypoint x="810" y="610" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08pmc4v_di" bpmnElement="Flow_08pmc4v">
         <di:waypoint x="802" y="160" />
         <di:waypoint x="872" y="160" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_15oge3b_di" bpmnElement="Flow_15oge3b">
-        <di:waypoint x="770" y="270" />
-        <di:waypoint x="880" y="270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ar848u_di" bpmnElement="Flow_1ar848u">
         <di:waypoint x="290" y="680" />
@@ -200,7 +176,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dvlgq3_di" bpmnElement="Flow_0dvlgq3">
         <di:waypoint x="622" y="270" />
-        <di:waypoint x="734" y="270" />
+        <di:waypoint x="880" y="270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pomo9q_di" bpmnElement="Flow_1pomo9q">
         <di:waypoint x="408" y="270" />
@@ -208,7 +184,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1d1gg1d_di" bpmnElement="Flow_1d1gg1d">
         <di:waypoint x="930" y="530" />
-        <di:waypoint x="930" y="592" />
+        <di:waypoint x="930" y="610" />
+        <di:waypoint x="810" y="610" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1dn7rnc_di" bpmnElement="Flow_1dn7rnc">
         <di:waypoint x="930" y="310" />
@@ -223,12 +200,6 @@
         <dc:Bounds x="1052" y="342" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1040" y="292" width="59" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_09zam3h_di" bpmnElement="Event_09zam3h">
-        <dc:Bounds x="734" y="252" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="713" y="295" width="79" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0wcrofr_di" bpmnElement="Event_CallForProjectSent">
@@ -276,14 +247,14 @@
       <bpmndi:BPMNShape id="Activity_1ekzr3f_di" bpmnElement="Activity_077plq6">
         <dc:Bounds x="702" y="120" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_03z6td1_di" bpmnElement="Event_0tyy4k2">
-        <dc:Bounds x="912" y="592" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="894" y="635" width="73" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1j1mvk7_di" bpmnElement="Activity_1tfe0we">
         <dc:Bounds x="190" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_163nm4f_di" bpmnElement="Event_14mfxoe">
+        <dc:Bounds x="442" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="468" y="396" width="83" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_11z6gxc_di" bpmnElement="Event_0yp6ghx">
         <dc:Bounds x="342" y="412" width="36" height="36" />
@@ -301,12 +272,6 @@
         <dc:Bounds x="962" y="432" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1003" y="413" width="73" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_163nm4f_di" bpmnElement="Event_14mfxoe">
-        <dc:Bounds x="442" y="412" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="468" y="396" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

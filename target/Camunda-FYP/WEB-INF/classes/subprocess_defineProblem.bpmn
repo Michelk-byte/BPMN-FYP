@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1smbtu7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1smbtu7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_DefineProblem">
     <bpmn:participant id="Participant_1djuh7t" name="Student" processRef="DefineProblem" />
   </bpmn:collaboration>
@@ -12,19 +12,19 @@
     <bpmn:sequenceFlow id="Flow_1b09nw4" sourceRef="Activity_1i4eoor" targetRef="Activity_1ww517p" />
     <bpmn:sequenceFlow id="Flow_1grli11" sourceRef="Activity_1ww517p" targetRef="Activity_010da7b" />
     <bpmn:sequenceFlow id="Flow_1nfa36t" sourceRef="Activity_010da7b" targetRef="Event_0in430t" />
-    <bpmn:userTask id="Activity_0iymu2o" name="Frame the problem">
+    <bpmn:userTask id="Activity_0iymu2o" name="Frame the problem" camunda:assignee="Student">
       <bpmn:incoming>Flow_1qg8nbg</bpmn:incoming>
       <bpmn:outgoing>Flow_07j6r9f</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1i4eoor" name="Conduct Background Research">
+    <bpmn:userTask id="Activity_1i4eoor" name="Conduct Background Research" camunda:assignee="Student">
       <bpmn:incoming>Flow_07j6r9f</bpmn:incoming>
       <bpmn:outgoing>Flow_1b09nw4</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1ww517p" name="Identify Stakeholders Needs">
+    <bpmn:userTask id="Activity_1ww517p" name="Identify Stakeholders Needs" camunda:assignee="Student">
       <bpmn:incoming>Flow_1b09nw4</bpmn:incoming>
       <bpmn:outgoing>Flow_1grli11</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_010da7b" name="Identify FR and NFR">
+    <bpmn:userTask id="Activity_010da7b" name="Identify FR and NFR" camunda:assignee="Student">
       <bpmn:incoming>Flow_1grli11</bpmn:incoming>
       <bpmn:outgoing>Flow_1nfa36t</bpmn:outgoing>
     </bpmn:userTask>

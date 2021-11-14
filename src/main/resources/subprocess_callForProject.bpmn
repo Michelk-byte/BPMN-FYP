@@ -10,9 +10,9 @@
         <bpmn:flowNodeRef>Activity_0v3it8k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0i0ebdv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0boyfzi</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0z17ftc</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1m4nwwq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1ye8cxr</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1m4nwwq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0z17ftc</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ai6bf1" name="Advisor">
         <bpmn:flowNodeRef>Activity_04hiubz</bpmn:flowNodeRef>
@@ -26,7 +26,7 @@
       <bpmn:outgoing>Flow_0epa5tp</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_15tedle" messageRef="Message_09mog9v" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:serviceTask id="Activity_0v3it8k" name="Review Submitted Project Proposal" camunda:class="org.example.ReviewSubmittedProjectProposalDelegate">
+    <bpmn:serviceTask id="Activity_0v3it8k" name="Review Submitted Project Proposal" camunda:class="org.example.callforproject.ReviewSubmittedProjectProposalDelegate">
       <bpmn:incoming>Flow_0epa5tp</bpmn:incoming>
       <bpmn:outgoing>Flow_0yy0sdc</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -39,11 +39,7 @@
       <bpmn:incoming>Flow_0mp6umz</bpmn:incoming>
       <bpmn:outgoing>Flow_17522ds</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0z17ftc" name="Return Project Application" camunda:assignee="FYP Committee">
-      <bpmn:incoming>Flow_02kgsct</bpmn:incoming>
-      <bpmn:outgoing>Flow_088q1l4</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sendTask id="Activity_04hiubz" name="Submit Project Proposal" camunda:class="org.example.LoggerDelegate">
+    <bpmn:sendTask id="Activity_04hiubz" name="Submit Project Proposal" camunda:class="org.example.utils.LoggerDelegate">
       <bpmn:incoming>Flow_13ysaf7</bpmn:incoming>
       <bpmn:outgoing>Flow_07xq1ua</bpmn:outgoing>
     </bpmn:sendTask>
@@ -59,10 +55,6 @@
     <bpmn:startEvent id="Event_0ksvl6v" name="Call For Project Sent">
       <bpmn:outgoing>Flow_03d0g70</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1m4nwwq" name="Validate Project" camunda:assignee="FYP Committee">
-      <bpmn:incoming>Flow_17522ds</bpmn:incoming>
-      <bpmn:outgoing>Flow_0p4svtv</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:endEvent id="Event_1ye8cxr" name="Project Validated">
       <bpmn:incoming>Flow_0p4svtv</bpmn:incoming>
     </bpmn:endEvent>
@@ -81,6 +73,14 @@
     <bpmn:sequenceFlow id="Flow_03d0g70" sourceRef="Event_0ksvl6v" targetRef="Gateway_1d8xdhq" />
     <bpmn:sequenceFlow id="Flow_13ysaf7" sourceRef="Activity_1a3vkb2" targetRef="Activity_04hiubz" />
     <bpmn:sequenceFlow id="Flow_0jccocf" sourceRef="Gateway_1d8xdhq" targetRef="Activity_1a3vkb2" />
+    <bpmn:serviceTask id="Activity_1m4nwwq" name="Validate Project" camunda:class="org.example.callforproject.ValidateProjectDelegate">
+      <bpmn:incoming>Flow_17522ds</bpmn:incoming>
+      <bpmn:outgoing>Flow_0p4svtv</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="Activity_0z17ftc" name="Return Project Application" camunda:class="org.example.utils.LoggerDelegate">
+      <bpmn:incoming>Flow_02kgsct</bpmn:incoming>
+      <bpmn:outgoing>Flow_088q1l4</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmn:message id="Message_09mog9v" name="Message_ProjectProposalReceived" />
   <bpmn:message id="Message_01o2u5f" name="Message_UpdatedProjectProposalReceived" />
@@ -164,9 +164,6 @@
       <bpmndi:BPMNShape id="Activity_1u6qjgq_di" bpmnElement="Activity_0boyfzi">
         <dc:Bounds x="980" y="430" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_027zbw0_di" bpmnElement="Activity_0z17ftc">
-        <dc:Bounds x="840" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0t82itt_di" bpmnElement="Activity_04hiubz">
         <dc:Bounds x="560" y="120" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -182,14 +179,17 @@
           <dc:Bounds x="202" y="185" width="77" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_01b9iw3_di" bpmnElement="Activity_1m4nwwq">
-        <dc:Bounds x="1170" y="430" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1faazmi_di" bpmnElement="Event_1ye8cxr">
         <dc:Bounds x="1362" y="452" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1339" y="495" width="83" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11by5oe_di" bpmnElement="Activity_1m4nwwq">
+        <dc:Bounds x="1170" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13zzglh_di" bpmnElement="Activity_0z17ftc">
+        <dc:Bounds x="840" y="290" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
