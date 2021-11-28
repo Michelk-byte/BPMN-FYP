@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_10sebh3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_CallForProject">
+    <bpmn:participant id="Participant_0he41mj" name="USJ" processRef="CallForProject" />
+  </bpmn:collaboration>
+  <bpmn:process id="CallForProject" name="CallForProject" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1p7k8gn">
+      <bpmn:lane id="Lane_1dmf5o8" name="FYP Committee">
+        <bpmn:flowNodeRef>Event_ProjectProposalReceived</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0i0ebdv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ValidateNumberOfStudents</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ProjectValidated</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ValidateProject</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ReviewSubmittedProjectProposal</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ReturnProjectProposal</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_PublishProject</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1ai6bf1" name="Advisor">
+        <bpmn:flowNodeRef>Gateway_1d8xdhq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_CallForProjectStarted</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_SubmitProjectDescription</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_FillProjectDescriptionTemplate</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_088q1l4" sourceRef="Activity_ReturnProjectProposal" targetRef="Gateway_1d8xdhq" />
+    <bpmn:sequenceFlow id="Flow_0p4svtv" sourceRef="Activity_ValidateProject" targetRef="Activity_PublishProject" />
+    <bpmn:sequenceFlow id="Flow_17522ds" sourceRef="Activity_ValidateNumberOfStudents" targetRef="Activity_ValidateProject" />
+    <bpmn:sequenceFlow id="Flow_0mp6umz" name="Proposal Meets FYP Requirements" sourceRef="Gateway_0i0ebdv" targetRef="Activity_ValidateNumberOfStudents">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{proposalMeetsRequirements}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0yy0sdc" sourceRef="Activity_ReviewSubmittedProjectProposal" targetRef="Gateway_0i0ebdv" />
+    <bpmn:sequenceFlow id="Flow_0epa5tp" sourceRef="Event_ProjectProposalReceived" targetRef="Activity_ReviewSubmittedProjectProposal" />
+    <bpmn:sequenceFlow id="Flow_02kgsct" name="Proposal Doesn&#39;t Meet FYP Requirements" sourceRef="Gateway_0i0ebdv" targetRef="Activity_ReturnProjectProposal">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not proposalMeetsRequirements}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_03d0g70" sourceRef="Event_CallForProjectStarted" targetRef="Gateway_1d8xdhq" />
+    <bpmn:sequenceFlow id="Flow_13ysaf7" sourceRef="Activity_FillProjectDescriptionTemplate" targetRef="Activity_SubmitProjectDescription" />
+    <bpmn:sequenceFlow id="Flow_0jccocf" sourceRef="Gateway_1d8xdhq" targetRef="Activity_FillProjectDescriptionTemplate" />
+    <bpmn:userTask id="Activity_ValidateNumberOfStudents" name="Validate Number of Students in Project">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_NumberOfStudents" label="Number of students:" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0mp6umz</bpmn:incoming>
+      <bpmn:outgoing>Flow_17522ds</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Event_CallForProjectStarted" name="Call For Project Started">
+      <bpmn:outgoing>Flow_03d0g70</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1d8xdhq">
+      <bpmn:incoming>Flow_03d0g70</bpmn:incoming>
+      <bpmn:incoming>Flow_088q1l4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jccocf</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_0i0ebdv">
+      <bpmn:incoming>Flow_0yy0sdc</bpmn:incoming>
+      <bpmn:outgoing>Flow_02kgsct</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0mp6umz</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateCatchEvent id="Event_ProjectProposalReceived" name="Project Proposal Received">
+      <bpmn:incoming>Flow_07xq1ua</bpmn:incoming>
+      <bpmn:outgoing>Flow_0epa5tp</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_15tedle" messageRef="Message_09mog9v" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_ProjectValidated" name="Project Validated">
+      <bpmn:incoming>Flow_0ig1sac</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_ValidateProject" name="Validate Project" camunda:delegateExpression="#{ValidateProject}">
+      <bpmn:incoming>Flow_17522ds</bpmn:incoming>
+      <bpmn:outgoing>Flow_0p4svtv</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0ig1sac" sourceRef="Activity_PublishProject" targetRef="Event_ProjectValidated" />
+    <bpmn:sequenceFlow id="Flow_07xq1ua" sourceRef="Activity_SubmitProjectDescription" targetRef="Event_ProjectProposalReceived" />
+    <bpmn:sendTask id="Activity_SubmitProjectDescription" name="Submit Project Proposal" camunda:delegateExpression="#{SubmitProjectDescription}">
+      <bpmn:incoming>Flow_13ysaf7</bpmn:incoming>
+      <bpmn:outgoing>Flow_07xq1ua</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Activity_FillProjectDescriptionTemplate" name="Fill Project Description Template (project proposal)" camunda:assignee="Advisor">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_Supervisor" label="Supervisor:" type="string" />
+          <camunda:formField id="FormField_CoSupervisors" label="Co-supervisors:" type="string" />
+          <camunda:formField id="FormField_ProjectTitle" label="Project title:" type="string" />
+          <camunda:formField id="FormField_ProjectObjectives" label="Project objectives:" type="string" />
+          <camunda:formField id="FormField_ProjectDescription" label="Project description:" type="string" />
+          <camunda:formField id="FormField_ProjectOutcome" label="Project outcome:" type="string" />
+          <camunda:formField id="FormField_ProjectDeliverables" label="Project deliverables:" type="string" />
+          <camunda:formField id="FormField_Prerequisites" label="Prerequisites:" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jccocf</bpmn:incoming>
+      <bpmn:outgoing>Flow_13ysaf7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_ReviewSubmittedProjectProposal" name="Review Submitted Project Proposal" camunda:delegateExpression="#{ReviewSubmittedProposal}">
+      <bpmn:incoming>Flow_0epa5tp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yy0sdc</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_ReturnProjectProposal" name="Return Project Application" camunda:delegateExpression="#{ReturnProjectProposal}">
+      <bpmn:incoming>Flow_02kgsct</bpmn:incoming>
+      <bpmn:outgoing>Flow_088q1l4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_PublishProject" name="Publish Project on Moodle">
+      <bpmn:incoming>Flow_0p4svtv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ig1sac</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:message id="Message_09mog9v" name="Message_ProjectProposalReceived" />
+  <bpmn:message id="Message_01o2u5f" name="Message_UpdatedProjectProposalReceived" />
+  <bpmn:message id="Message_1lr5omj" name="Message_ProjectApplicationReturned" />
+  <bpmn:message id="Message_14yia0u" name="Message_ProjectValidated" />
+  <bpmn:message id="Message_1lca6fr" name="Message_ProjectValidated" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_CallForProject">
+      <bpmndi:BPMNShape id="Participant_0he41mj_di" bpmnElement="Participant_0he41mj" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1320" height="460" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ai6bf1_di" bpmnElement="Lane_1ai6bf1" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1290" height="165" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1dmf5o8_di" bpmnElement="Lane_1dmf5o8" isHorizontal="true">
+        <dc:Bounds x="190" y="245" width="1290" height="295" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_07xq1ua_di" bpmnElement="Flow_07xq1ua">
+        <di:waypoint x="610" y="200" />
+        <di:waypoint x="610" y="452" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ig1sac_di" bpmnElement="Flow_0ig1sac">
+        <di:waypoint x="1380" y="470" />
+        <di:waypoint x="1422" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jccocf_di" bpmnElement="Flow_0jccocf">
+        <di:waypoint x="345" y="160" />
+        <di:waypoint x="400" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13ysaf7_di" bpmnElement="Flow_13ysaf7">
+        <di:waypoint x="500" y="160" />
+        <di:waypoint x="560" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03d0g70_di" bpmnElement="Flow_03d0g70">
+        <di:waypoint x="258" y="160" />
+        <di:waypoint x="295" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02kgsct_di" bpmnElement="Flow_02kgsct">
+        <di:waypoint x="890" y="445" />
+        <di:waypoint x="890" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="797" y="390" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0epa5tp_di" bpmnElement="Flow_0epa5tp">
+        <di:waypoint x="628" y="470" />
+        <di:waypoint x="690" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yy0sdc_di" bpmnElement="Flow_0yy0sdc">
+        <di:waypoint x="790" y="470" />
+        <di:waypoint x="865" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mp6umz_di" bpmnElement="Flow_0mp6umz">
+        <di:waypoint x="915" y="470" />
+        <di:waypoint x="980" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="892" y="490" width="77" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17522ds_di" bpmnElement="Flow_17522ds">
+        <di:waypoint x="1080" y="470" />
+        <di:waypoint x="1130" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0p4svtv_di" bpmnElement="Flow_0p4svtv">
+        <di:waypoint x="1230" y="470" />
+        <di:waypoint x="1280" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_088q1l4_di" bpmnElement="Flow_088q1l4">
+        <di:waypoint x="840" y="330" />
+        <di:waypoint x="320" y="330" />
+        <di:waypoint x="320" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_14nm1rw_di" bpmnElement="Activity_ValidateNumberOfStudents">
+        <dc:Bounds x="980" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jxbktx_di" bpmnElement="Event_CallForProjectStarted">
+        <dc:Bounds x="222" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="202" y="185" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1d8xdhq_di" bpmnElement="Gateway_1d8xdhq" isMarkerVisible="true">
+        <dc:Bounds x="295" y="135" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0i0ebdv_di" bpmnElement="Gateway_0i0ebdv" isMarkerVisible="true">
+        <dc:Bounds x="865" y="445" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14bljck_di" bpmnElement="Event_ProjectProposalReceived">
+        <dc:Bounds x="592" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="571" y="495" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1faazmi_di" bpmnElement="Event_ProjectValidated">
+        <dc:Bounds x="1422" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1399" y="495" width="83" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11by5oe_di" bpmnElement="Activity_ValidateProject">
+        <dc:Bounds x="1130" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gdkr3m_di" bpmnElement="Activity_SubmitProjectDescription">
+        <dc:Bounds x="560" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18s66hy_di" bpmnElement="Activity_FillProjectDescriptionTemplate">
+        <dc:Bounds x="400" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07wqgjw_di" bpmnElement="Activity_ReviewSubmittedProjectProposal">
+        <dc:Bounds x="690" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oq4w01_di" bpmnElement="Activity_ReturnProjectProposal">
+        <dc:Bounds x="840" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08h0cyo_di" bpmnElement="Activity_PublishProject">
+        <dc:Bounds x="1280" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1vy1w4j" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_ReviewProposal">
+    <bpmn:participant id="Participant_0cr0n0j" name="USJ" processRef="ReviewProposal" />
+  </bpmn:collaboration>
+  <bpmn:process id="ReviewProposal" name="ReviewProposal" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_08pwsjh">
+      <bpmn:lane id="Lane_1hvlx1h" name="Advisor">
+        <bpmn:flowNodeRef>Event_194bz40</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1cl7563</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0ek1dn0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ReviewProposal</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0enrpqv" name="Student">
+        <bpmn:flowNodeRef>Event_0ifn2w7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ApproveProposal</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:endEvent id="Event_0ifn2w7" name="Proposal Approved">
+      <bpmn:incoming>Flow_18iaeh2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="Event_194bz40" name="Proposal Submitted For Review">
+      <bpmn:outgoing>Flow_0alqsib</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1cl7563">
+      <bpmn:incoming>Flow_1o7x3od</bpmn:incoming>
+      <bpmn:outgoing>Flow_03vofzw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_09lnsg8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_18iaeh2" sourceRef="Activity_ApproveProposal" targetRef="Event_0ifn2w7" />
+    <bpmn:sequenceFlow id="Flow_0alqsib" sourceRef="Event_194bz40" targetRef="Activity_ReviewProposal" />
+    <bpmn:sequenceFlow id="Flow_03vofzw" name="No Comments" sourceRef="Gateway_1cl7563" targetRef="Activity_ApproveProposal">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not hasComments}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_09lnsg8" name="Comments" sourceRef="Gateway_1cl7563" targetRef="Event_0ek1dn0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{hasComments}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_0ek1dn0" name="Proposal Has Comments">
+      <bpmn:incoming>Flow_09lnsg8</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1hoyejd" messageRef="Message_1vhohbb" camunda:class="org.example.reviewproposal.ProposalCommentsMessageDelegate" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1o7x3od" sourceRef="Activity_ReviewProposal" targetRef="Gateway_1cl7563" />
+    <bpmn:serviceTask id="Activity_ReviewProposal" name="Review Proposal" camunda:delegateExpression="#{ReviewProposal}">
+      <bpmn:incoming>Flow_0alqsib</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o7x3od</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:task id="Activity_ApproveProposal" name="Approve Proposal">
+      <bpmn:incoming>Flow_03vofzw</bpmn:incoming>
+      <bpmn:outgoing>Flow_18iaeh2</bpmn:outgoing>
+    </bpmn:task>
+  </bpmn:process>
+  <bpmn:error id="Error_1jnn9m7" name="Error_ProposalhasComments" />
+  <bpmn:message id="Message_1vhohbb" name="Message_ProposalHasComments" />
+  <bpmn:message id="Message_0caq49l" name="Message_ProposalReviewalSent" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_ReviewProposal">
+      <bpmndi:BPMNShape id="Participant_0cr0n0j_di" bpmnElement="Participant_0cr0n0j" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="680" height="270" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0enrpqv_di" bpmnElement="Lane_0enrpqv" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="650" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1hvlx1h_di" bpmnElement="Lane_1hvlx1h" isHorizontal="true">
+        <dc:Bounds x="190" y="190" width="650" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_09lnsg8_di" bpmnElement="Flow_09lnsg8">
+        <di:waypoint x="535" y="250" />
+        <di:waypoint x="612" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="533" y="273" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03vofzw_di" bpmnElement="Flow_03vofzw">
+        <di:waypoint x="510" y="225" />
+        <di:waypoint x="510" y="130" />
+        <di:waypoint x="590" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="487" y="113" width="71" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0alqsib_di" bpmnElement="Flow_0alqsib">
+        <di:waypoint x="268" y="250" />
+        <di:waypoint x="320" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18iaeh2_di" bpmnElement="Flow_18iaeh2">
+        <di:waypoint x="690" y="130" />
+        <di:waypoint x="762" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o7x3od_di" bpmnElement="Flow_1o7x3od">
+        <di:waypoint x="420" y="250" />
+        <di:waypoint x="485" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0ifn2w7_di" bpmnElement="Event_0ifn2w7">
+        <dc:Bounds x="762" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="757" y="155" width="47" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_194bz40_di" bpmnElement="Event_194bz40">
+        <dc:Bounds x="232" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="216" y="275" width="71" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1cl7563_di" bpmnElement="Gateway_1cl7563" isMarkerVisible="true">
+        <dc:Bounds x="485" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0j3ih4h_di" bpmnElement="Event_0ek1dn0">
+        <dc:Bounds x="612" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="597" y="275" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08wstxh_di" bpmnElement="Activity_ReviewProposal">
+        <dc:Bounds x="320" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pdtrnd_di" bpmnElement="Activity_ApproveProposal">
+        <dc:Bounds x="590" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
