@@ -6,7 +6,7 @@ An FYP Process is a Step by Step Guide to Execute our Final Year Project. FYP is
 
 Camunda Modeled FYP Process.
 
-![img.png](img.png)
+![img.png](img/img.png)
 
 Original FYP Process to be modeled.
 
@@ -30,7 +30,7 @@ That's it! Press Shift+F10 or click the Run button to start the project.
 1. To access the application, use [localhost:8080](http://localhost:8080/).
 2. Authenticate with the credentials specified in application.yaml file under resources.
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
 Default user credentials are id: demo, password: demo.
 
@@ -39,4 +39,4 @@ Default user credentials are id: demo, password: demo.
 A List of BPMN models will be provided.
 4. Select the root model: "FYP".
 
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
