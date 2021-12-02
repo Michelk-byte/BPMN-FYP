@@ -1,5 +1,5 @@
 # Camunda BPM Process Application
-A Process Mini-Project Application for [Camunda BPM](http://docs.camunda.org) to model and implement the FYP process.
+A Mini-Project Process Application for [Camunda BPM](http://docs.camunda.org) to model and implement the FYP process.
 
 ![img.png](pics/img.png)
 
@@ -30,3 +30,10 @@ That's it! Press Shift+F10 or click the Run button to start the project.
 ![img_1.png](img_1.png)
 
 Default user credentials are id: demo, password: demo.
+
+3. Click on the Home button, then TaskList, and finally Start Process.
+
+A List of BPMN models will be provided.
+4. Select the root model: "FYP".
+
+![img_3.png](img_3.png)
