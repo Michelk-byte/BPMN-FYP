@@ -1,11 +1,14 @@
 # Camunda BPM Process Application
 A Mini-Project Process Application for [Camunda BPM](http://docs.camunda.org) to model and implement the FYP process.
+An FYP Process is a Step by Step Guide to Execute our Final Year Project. FYP is an academic task that must be accomplished individually by every undergraduate student to obtain the attributions to graduate.
 
 ![img.png](pics/img.png)
 
+Camunda Modeled FYP Process.
+
 ![img.png](img.png)
 
-FYP Process 
+Original FYP Process to be modeled.
 
 
 This project was built using Java Spring Boot and integrated with Camunda's various features.
