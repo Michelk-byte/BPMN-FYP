@@ -27,7 +27,10 @@ Spring Boot RESTful web services were documented using Swagger UI which is a set
 Due to IntelliJ's "Add Maven Support" feature, it will immediately recognize it as a maven.
 Dependencies will be resolved without any user interaction.
 
-That's it! Press Shift+F10 or click the Run button to start the project.
+That's it!   
+Press Shift+F10 or click the Run button to start the project.  
+By default, Spring Boot uses the 8080 port number to start the embedded Tomcat server.  
+Start a browser at [localhost:8080](http://localhost:8080/), and let the magic begin!
 
 ### Connect to Database
 
