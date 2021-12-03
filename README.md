@@ -37,7 +37,7 @@ Fill the following fields and connect:
 **Password**: password  
 **Jdbc url**: jdbc:h2:mem:default
 
-![img_16.png](img_16.png)
+![img_16.png](img/img_16.png)
 
 
 ## Start Project
@@ -58,7 +58,7 @@ A List of BPMN models will be provided.
 
 5. Start Process. _(Business key is optional)_
 
-![img_2.png](img_2.png)
+![img_2.png](img/img__4.png)
 
 6. Click on _Add Simple filters_ below create a filter to check all available tasks filtered by all assignees (Student, Advisor, FYP Committee)
 7. Select one of the “Fill Project Description Template” tasks 
@@ -69,7 +69,7 @@ This activity has been assigned to the Assignee lane because it is located withi
 10. Fill the form _(fyp project proposed template)_
 11. Complete
 
-![img_6.png](img_6.png)
+![img_6.png](img/img_6.png)
 
 The process will resume once the task has been completed, and the token will stop at a different event or activity.
 
@@ -78,20 +78,20 @@ The process will resume once the task has been completed, and the token will sto
 14. Select Call For Project subprocess 
 15. Copy the process instance id under process instances tab
 
-![img_9.png](img_9.png)
+![img_9.png](img/img_9.png)
 
 16. Open [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) 
 17. Expand Call For Project Controller Endpoint 
 18. Paste the process instance id 
 19. Click on Try It Out!
 
-![img_11.png](img_11.png)
+![img_11.png](img/img_11.png)
 
 The FYP committee will be notified and asked to review the project proposal. If the review passes, the process instance will be transferred to the user task "Validate Number of Students", but if the review fails (at random), the previous tasks will have to be completed again.
 
 In case the project proposal was reviewed successfully. 
 
-![img_12.png](img_12.png)
+![img_12.png](img/img_12.png)
 
 20. Select “Validate Number of Students in Project” task 
 21. Reset Advisor 
@@ -99,20 +99,20 @@ In case the project proposal was reviewed successfully.
 23. Input the number of students 
 24. Complete
 
-![img_13.png](img_13.png)
+![img_13.png](img/img_13.png)
 
 In order to locate the newly created project in the database:
 25. Open [localhost:8080/h2-ui](http://localhost:8080/h2-ui)
 26. Find the project table and run the default query: “SELECT * FROM PROJECT PROJECT” 
 
 
-![img_18.png](img_18.png)
+![img_18.png](img/img_18.png)
 
 The process instances that completed the "Call for Project" call activity will be moved to the "Form Group And Apply for Project" call activity after the deadline, November 19th.
 
-![img_19.png](img_19.png)
+![img_19.png](img/img_19.png)
 
 The user task "Apply for Two Projects" is where the instance comes to a halt. As shown below, additional user input is required.
 
-![img_21.png](img_21.png)
+![img_21.png](img/img_21.png)
 
