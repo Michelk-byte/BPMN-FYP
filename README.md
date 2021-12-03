@@ -16,7 +16,9 @@ Inside IntelliJ, it was set up as an Apache Maven Project.
 
 Spring Boot RESTful web services were documented using Swagger UI which is a set of open-source software tools that includes automated documentation, code generation, and test-case generation.
 
-## To build the project
+
+## Setup Project
+### Build Project
 
 1. Clone the project.
 2. Open Project on IntelliJ.
@@ -26,7 +28,7 @@ Dependencies will be resolved without any user interaction.
 
 That's it! Press Shift+F10 or click the Run button to start the project.
 
-## To Connect to the database
+### Connect to Database
 
 Open [localhost:8080/h2-ui](http://localhost:8080/h2-ui)
 Fill the following fields and connect:
@@ -38,7 +40,7 @@ Fill the following fields and connect:
 ![img_16.png](img_16.png)
 
 
-## To Start the project
+## Start Project
 
 1. To access the application, use [localhost:8080](http://localhost:8080/).
 2. Authenticate with the credentials specified in application.yaml file under resources.
@@ -59,36 +61,58 @@ A List of BPMN models will be provided.
 ![img_2.png](img_2.png)
 
 6. Click on _Add Simple filters_ below create a filter to check all available tasks filtered by all assignees (Student, Advisor, FYP Committee)
-7. Select one of the “Fill Project” tasks -> Reset Advisor -> Claim -> Fill the form -> Complete
+7. Select one of the “Fill Project Description Template” tasks 
+
+This activity has been assigned to the Assignee lane because it is located within the pool's Assignee lane.
+8. Reset Advisor 
+9. Claim task 
+10. Fill the form _(fyp project proposed template)_
+11. Complete
 
 ![img_6.png](img_6.png)
 
-8. Cockpit -> Process -> Call For Project -> Copy the process instance id
+The process will resume once the task has been completed, and the token will stop at a different event or activity.
+
+12. Go back to Cockpit 
+13. Navigate to Process tab 
+14. Select Call For Project subprocess 
+15. Copy the process instance id under process instances tab
 
 ![img_9.png](img_9.png)
 
-9. Open http://localhost:8080/swagger-ui.html -> Expand Call For Project -> Add the process instance id and click on Try It Out!) -> Expand Call For Project -> Add the process instance id and click on Try It Out!
+16. Open [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) 
+17. Expand Call For Project Controller Endpoint 
+18. Paste the process instance id 
+19. Click on Try It Out!
 
 ![img_11.png](img_11.png)
 
-10. A message will be sent to the FYP committee so that they review the project proposal, if the review passes. The process instance will be moved to the user task: “Validate Number of Students”. If the review does not pass (random), the previous tasks will have to be repeated.
+The FYP committee will be notified and asked to review the project proposal. If the review passes, the process instance will be transferred to the user task "Validate Number of Students", but if the review fails (at random), the previous tasks will have to be completed again.
+
+In case the project proposal was reviewed successfully. 
 
 ![img_12.png](img_12.png)
 
-11. Select “Validate Number of Students in Project” task -> Reset Advisor -> Claim -> Input the number of students -> Complete
+20. Select “Validate Number of Students in Project” task 
+21. Reset Advisor 
+22. Claim 
+23. Input the number of students 
+24. Complete
 
 ![img_13.png](img_13.png)
 
-12. Open http://localhost:8080/h2-ui
-13. Find the project table and run the default query: “SELECT * FROM PROJECT PROJECT” -> You will find the newly created project.
+In order to locate the newly created project in the database:
+25. Open [localhost:8080/h2-ui](http://localhost:8080/h2-ui)
+26. Find the project table and run the default query: “SELECT * FROM PROJECT PROJECT” 
+
 
 ![img_18.png](img_18.png)
 
-(After the deadline, November 19th), the process instances that accomplished “Call for Project” call activity will be moved to the “Form Group And Apply for Project” call activity.
+The process instances that completed the "Call for Project" call activity will be moved to the "Form Group And Apply for Project" call activity after the deadline, November 19th.
 
 ![img_19.png](img_19.png)
 
-Here, the instance stops at the “Apply for Two Projects” user task. Another user input is needed as shown below.
+The user task "Apply for Two Projects" is where the instance comes to a halt. As shown below, additional user input is required.
 
 ![img_21.png](img_21.png)
 
