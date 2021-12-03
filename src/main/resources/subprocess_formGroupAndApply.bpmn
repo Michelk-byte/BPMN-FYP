@@ -37,9 +37,9 @@
     <bpmn:userTask id="Activity_ApplyForProject" name="Apply for Two Projects" camunda:assignee="Student">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_ProjectId1" type="long" />
-          <camunda:formField id="FormField_ProjectId2" type="long" />
-          <camunda:formField id="FormField_RegistrationIds" type="string" />
+          <camunda:formField id="FormField_ProjectId1" label="Project id 2:" type="long" />
+          <camunda:formField id="FormField_ProjectId2" label="Project id 1:" type="long" />
+          <camunda:formField id="FormField_RegistrationIds" label="Registration ids:" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0j80v6l</bpmn:incoming>
@@ -64,6 +64,10 @@
       <bpmndi:BPMNShape id="Participant_0g0g0ex_di" bpmnElement="Participant_0g0g0ex" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="1270" height="350" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ijd25a_di" bpmnElement="Flow_1ijd25a">
+        <di:waypoint x="1050" y="250" />
+        <di:waypoint x="1142" y="250" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1vczklz_di" bpmnElement="Flow_1vczklz">
         <di:waypoint x="640" y="170" />
         <di:waypoint x="700" y="170" />
@@ -99,10 +103,6 @@
       <bpmndi:BPMNEdge id="Flow_0e28jdd_di" bpmnElement="Flow_0e28jdd">
         <di:waypoint x="870" y="250" />
         <di:waypoint x="950" y="250" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ijd25a_di" bpmnElement="Flow_1ijd25a">
-        <di:waypoint x="1050" y="250" />
-        <di:waypoint x="1142" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0zctddk_di" bpmnElement="Activity_CheckAvailableProject">
         <dc:Bounds x="300" y="200" width="100" height="80" />

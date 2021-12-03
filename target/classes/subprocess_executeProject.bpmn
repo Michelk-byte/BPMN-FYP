@@ -16,14 +16,12 @@
         <bpmn:flowNodeRef>Event_10fewgd</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0os9qn8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_06lifpr</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_05i1xzi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1rzh82o</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0wupwff</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_10uiu5r</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0z5i4bl</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0cwkl09</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0jqkodr</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1linjii</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_SendFinalPresentationInvitation</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0s6dy9k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0d5j44d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_05dxpn6</bpmn:flowNodeRef>
@@ -31,11 +29,13 @@
         <bpmn:flowNodeRef>Gateway_04u1b4p</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0tmo9lh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0g6adu2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1jh63mz</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0irly8l</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1vlsfq4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0y7w37z</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1ade7z1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_05i1xzi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1jh63mz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0cwkl09</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0irly8l</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1avrm77" sourceRef="Activity_06lifpr" targetRef="Gateway_1rzh82o" />
@@ -77,22 +77,12 @@
       <bpmn:incoming>Flow_02l0ss2</bpmn:incoming>
       <bpmn:outgoing>Flow_1avrm77</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Activity_05i1xzi" name="Write Progress Report">
-      <bpmn:incoming>Flow_1azp8qb</bpmn:incoming>
-      <bpmn:outgoing>Flow_1da9abm</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:parallelGateway id="Gateway_1rzh82o">
       <bpmn:incoming>Flow_1avrm77</bpmn:incoming>
       <bpmn:incoming>Flow_1da9abm</bpmn:incoming>
       <bpmn:outgoing>Flow_198um04</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0vsiyhw" sourceRef="Event_0tmo9lh" targetRef="Activity_1vlsfq4" />
-    <bpmn:boundaryEvent id="Event_1jh63mz" name="April, 13th 2022" attachedToRef="Activity_05i1xzi">
-      <bpmn:outgoing>Flow_1yq3gtm</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0ctz1iz">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-04-13T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_1yq3gtm" sourceRef="Event_1jh63mz" targetRef="Activity_1vlsfq4" />
     <bpmn:parallelGateway id="Gateway_0wupwff">
       <bpmn:incoming>Flow_15n4ssn</bpmn:incoming>
@@ -116,21 +106,11 @@
       <bpmn:incoming>Flow_02rzozy</bpmn:incoming>
       <bpmn:outgoing>Flow_15n4ssn</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Activity_0cwkl09" name="Write Final Report">
-      <bpmn:incoming>Flow_0c33wwc</bpmn:incoming>
-      <bpmn:outgoing>Flow_1l6xv77</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_02rzozy" sourceRef="Gateway_1qk4qd0" targetRef="Activity_0z5i4bl" />
     <bpmn:sequenceFlow id="Flow_15n4ssn" sourceRef="Activity_0z5i4bl" targetRef="Gateway_0wupwff" />
     <bpmn:sequenceFlow id="Flow_0c33wwc" sourceRef="Gateway_1qk4qd0" targetRef="Activity_0cwkl09" />
     <bpmn:sequenceFlow id="Flow_1l6xv77" sourceRef="Activity_0cwkl09" targetRef="Gateway_0wupwff" />
     <bpmn:sequenceFlow id="Flow_0kt6l9h" sourceRef="Event_0g6adu2" targetRef="Activity_0y7w37z" />
-    <bpmn:boundaryEvent id="Event_0irly8l" name="May 16th, 2022" attachedToRef="Activity_0cwkl09">
-      <bpmn:outgoing>Flow_12640u6</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1h0npwe">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-05-16T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_12640u6" sourceRef="Event_0irly8l" targetRef="Activity_0y7w37z" />
     <bpmn:sequenceFlow id="Flow_1griy6e" sourceRef="Event_10uiu5r" targetRef="Activity_0y7w37z" />
     <bpmn:boundaryEvent id="Event_0tmo9lh" name="April, 13th 2022" attachedToRef="Activity_06lifpr">
@@ -153,7 +133,7 @@
       <bpmn:outgoing>Flow_0vd3lan</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_1bn93c6" sourceRef="Activity_0y7w37z" targetRef="Gateway_0jqkodr" />
-    <bpmn:intermediateCatchEvent id="Event_1linjii" name="Final Presentation Invite Sent">
+    <bpmn:intermediateCatchEvent id="Event_SendFinalPresentationInvitation" name="Final Presentation Invite Sent">
       <bpmn:incoming>Flow_07wum0a</bpmn:incoming>
       <bpmn:outgoing>Flow_1ywjxul</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_06pf53v" messageRef="Message_0abweeq" />
@@ -164,9 +144,9 @@
       <bpmn:outgoing>Flow_13ff81v</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0uh43lm" sourceRef="Activity_1ade7z1" targetRef="Event_0mnmmd2" />
-    <bpmn:sequenceFlow id="Flow_07wum0a" sourceRef="Gateway_0d5j44d" targetRef="Event_1linjii" />
+    <bpmn:sequenceFlow id="Flow_07wum0a" sourceRef="Gateway_0d5j44d" targetRef="Event_SendFinalPresentationInvitation" />
     <bpmn:sequenceFlow id="Flow_0kkth50" sourceRef="Gateway_0d5j44d" targetRef="Event_05dxpn6" />
-    <bpmn:sequenceFlow id="Flow_1ywjxul" sourceRef="Event_1linjii" targetRef="Gateway_0s6dy9k" />
+    <bpmn:sequenceFlow id="Flow_1ywjxul" sourceRef="Event_SendFinalPresentationInvitation" targetRef="Gateway_0s6dy9k" />
     <bpmn:sequenceFlow id="Flow_0946ont" sourceRef="Event_05dxpn6" targetRef="Gateway_0s6dy9k" />
     <bpmn:sequenceFlow id="Flow_1w2dvd8" sourceRef="Gateway_0jqkodr" targetRef="Gateway_0d5j44d" />
     <bpmn:eventBasedGateway id="Gateway_0d5j44d">
@@ -217,8 +197,28 @@
       <bpmn:incoming>Flow_0kphs1b</bpmn:incoming>
       <bpmn:outgoing>Flow_0uh43lm</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:task id="Activity_05i1xzi" name="Write Progress Report">
+      <bpmn:incoming>Flow_1azp8qb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1da9abm</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:boundaryEvent id="Event_1jh63mz" name="April, 13th 2022" attachedToRef="Activity_05i1xzi">
+      <bpmn:outgoing>Flow_1yq3gtm</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0ctz1iz">
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-04-13T00:00:00+02:00</bpmn:timeDate>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:task id="Activity_0cwkl09" name="Write Final Report">
+      <bpmn:incoming>Flow_0c33wwc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l6xv77</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:boundaryEvent id="Event_0irly8l" name="May 16th, 2022" attachedToRef="Activity_0cwkl09">
+      <bpmn:outgoing>Flow_12640u6</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1h0npwe">
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-05-16T00:00:00+02:00</bpmn:timeDate>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
   </bpmn:process>
-  <bpmn:message id="Message_0abweeq" name="Message_SendFinalPresentationInvitation" />
+  <bpmn:message id="Message_0abweeq" name="Message_FinalPresentationInvitationSent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_ExecuteProject">
       <bpmndi:BPMNShape id="Participant_13gyh4m_di" bpmnElement="Participant_13gyh4m" isHorizontal="true">
@@ -395,9 +395,6 @@
       <bpmndi:BPMNShape id="Activity_06lifpr_di" bpmnElement="Activity_06lifpr">
         <dc:Bounds x="440" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0dziia3_di" bpmnElement="Activity_05i1xzi">
-        <dc:Bounds x="440" y="280" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1rzh82o_di" bpmnElement="Gateway_1rzh82o">
         <dc:Bounds x="585" y="215" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -413,13 +410,10 @@
       <bpmndi:BPMNShape id="Activity_0z5i4bl_di" bpmnElement="Activity_0z5i4bl">
         <dc:Bounds x="1110" y="100" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ikp63s_di" bpmnElement="Activity_0cwkl09">
-        <dc:Bounds x="1110" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0jqkodr_di" bpmnElement="Gateway_0jqkodr">
         <dc:Bounds x="1675" y="215" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1linjii_di" bpmnElement="Event_1linjii">
+      <bpmndi:BPMNShape id="Event_1linjii_di" bpmnElement="Event_SendFinalPresentationInvitation">
         <dc:Bounds x="1902" y="272" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1876" y="315" width="89" height="27" />
@@ -461,6 +455,12 @@
       <bpmndi:BPMNShape id="Activity_00ow57k_di" bpmnElement="Activity_1ade7z1">
         <dc:Bounds x="2180" y="200" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0sdcx3z_di" bpmnElement="Activity_05i1xzi">
+        <dc:Bounds x="440" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11nxg80_di" bpmnElement="Activity_0cwkl09">
+        <dc:Bounds x="1110" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1wx0uce_di" bpmnElement="Event_0g6adu2">
         <dc:Bounds x="1192" y="82" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -473,16 +473,16 @@
           <dc:Bounds x="502" y="62" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1no8g00_di" bpmnElement="Event_0irly8l">
-        <dc:Bounds x="1192" y="352" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1172" y="395" width="77" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_16g9o4z_di" bpmnElement="Event_1jh63mz">
         <dc:Bounds x="522" y="342" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="502" y="385" width="77" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1no8g00_di" bpmnElement="Event_0irly8l">
+        <dc:Bounds x="1192" y="352" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1172" y="395" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

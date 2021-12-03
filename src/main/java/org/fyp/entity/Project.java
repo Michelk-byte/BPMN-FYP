@@ -23,10 +23,10 @@ public class Project {
     private long groupId;
 
     public void setAssigned(boolean assigned) {
-        this.assigned = assigned;
+        this.projectAssigned = assigned;
     }
 
-    private boolean assigned = false;
+    private boolean projectAssigned = false;
 
     public Project(String projectTitle, String projectDescription, String projectObjectives, String projectDeliverables, String projectSupervisor, String projectCoSupervisor, String projectPrerequisites, String projectOutcome, long numberOfStudents) {
         this.projectTitle = projectTitle;
@@ -144,7 +144,8 @@ public class Project {
                 ", projectCoSupervisor='" + projectCoSupervisor + '\'' +
                 ", projectPrerequisites='" + projectPrerequisites + '\'' +
                 ", projectOutcome='" + projectOutcome + '\'' +
-                ", numberOfStudents=" + numberOfStudents +
+                ", numberOfStudents=" + numberOfStudents + '\'' +
+                ", projectAssigned =" + projectAssigned +
                 '}';
     }
 }

@@ -24,15 +24,14 @@ public class SwaggerConfig {
     }
 
     private Predicate<String> postPaths() {
-        return or(regex("/api/posts.*"), regex("/api/javainuse.*"));
+        return or(regex("/api/posts.*"), regex("/api.*"));
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("JavaInUse API")
-                .description("JavaInUse API reference for developers")
-                .termsOfServiceUrl("http://javainuse.com")
-                .contact("javainuse@gmail.com").license("JavaInUse License")
-                .licenseUrl("javainuse@gmail.com").version("1.0").build();
+        return new ApiInfoBuilder().title("FYP BPMN API")
+                .description("FYP BPMN API for developers")
+                .termsOfServiceUrl("http://localhost:8080/api")
+                .contact("michelahmadpaola@net.usj.edu.lb").version("1.0").build();
     }
 
 }

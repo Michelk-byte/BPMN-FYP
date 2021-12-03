@@ -23,7 +23,7 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P7D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateCatchEvent id="Event_1c9ec9m" name="Presentation Invite Sent">
+    <bpmn:intermediateCatchEvent id="Event_ProposalPresentationInvitationSent" name="Presentation Invite Sent">
       <bpmn:incoming>Flow_0qk2v68</bpmn:incoming>
       <bpmn:outgoing>Flow_0xzxkft</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1wg180a" messageRef="Message_1v3yd4o" />
@@ -50,8 +50,8 @@
     <bpmn:sequenceFlow id="Flow_141au8x" sourceRef="Activity_1ih3k2l" targetRef="Gateway_01liwgo" />
     <bpmn:sequenceFlow id="Flow_12v740y" sourceRef="Gateway_0hdf56g" targetRef="Event_16sv5ep" />
     <bpmn:sequenceFlow id="Flow_1jh6xpn" sourceRef="Event_16sv5ep" targetRef="Gateway_1mh1msw" />
-    <bpmn:sequenceFlow id="Flow_0qk2v68" sourceRef="Gateway_0hdf56g" targetRef="Event_1c9ec9m" />
-    <bpmn:sequenceFlow id="Flow_0xzxkft" sourceRef="Event_1c9ec9m" targetRef="Gateway_1mh1msw" />
+    <bpmn:sequenceFlow id="Flow_0qk2v68" sourceRef="Gateway_0hdf56g" targetRef="Event_ProposalPresentationInvitationSent" />
+    <bpmn:sequenceFlow id="Flow_0xzxkft" sourceRef="Event_ProposalPresentationInvitationSent" targetRef="Gateway_1mh1msw" />
     <bpmn:sequenceFlow id="Flow_1xo4j2b" sourceRef="Gateway_1mh1msw" targetRef="Activity_08pecna" />
     <bpmn:sequenceFlow id="Flow_1mufiv9" sourceRef="Activity_08pecna" targetRef="Gateway_01liwgo" />
     <bpmn:task id="Activity_08pecna" name="Present Proposal">
@@ -63,7 +63,7 @@
       <bpmn:outgoing>Flow_141au8x</bpmn:outgoing>
     </bpmn:task>
   </bpmn:process>
-  <bpmn:message id="Message_1v3yd4o" name="Message_SendPresentationInvitation" />
+  <bpmn:message id="Message_1v3yd4o" name="Message_ProposalPresentationInvitationSent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_PublishPresentProposal">
       <bpmndi:BPMNShape id="Participant_1yrevyp_di" bpmnElement="Participant_1yrevyp" isHorizontal="true">
@@ -139,7 +139,7 @@
           <dc:Bounds x="489" y="93" width="62" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1c9ec9m_di" bpmnElement="Event_1c9ec9m">
+      <bpmndi:BPMNShape id="Event_1c9ec9m_di" bpmnElement="Event_ProposalPresentationInvitationSent">
         <dc:Bounds x="452" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="439" y="205" width="63" height="27" />
