@@ -2,13 +2,14 @@
 A Mini-Project Process Application for [Camunda BPM](http://docs.camunda.org) to model and implement the FYP process.
 A FYP Process is a step-by-step guide for completing our senior project. FYP is an academic task that each undergraduate student must complete individually in order to graduate with the necessary attributions.
 
+## Camunda Modeled FYP Process.
 ![img.png](img/process.png)
 
-Camunda Modeled FYP Process.
 
+## Original FYP Process to be modeled.
 ![img.png](img/img.png)
 
-Original FYP Process to be modeled.
+
 
 
 This project was built using Java Spring Boot functionalities such as JPA and Rest Api Controllers, as well as integrated with Camunda's various features.
@@ -17,7 +18,7 @@ Inside IntelliJ, it was set up as an Apache Maven Project.
 Spring Boot RESTful web services were documented using Swagger UI which is a set of open-source software tools that includes automated documentation, code generation, and test-case generation.
 
 
-## Setup Project
+## Project Setup
 ### Build Project
 
 1. Clone the project.
