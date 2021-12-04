@@ -12,13 +12,11 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_0te3qgb" name="Student">
         <bpmn:flowNodeRef>Gateway_1qk4qd0</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1l1n27s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_10fewgd</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0os9qn8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_06lifpr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1rzh82o</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0wupwff</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_10uiu5r</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0z5i4bl</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0jqkodr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_SendFinalPresentationInvitation</bpmn:flowNodeRef>
@@ -33,9 +31,9 @@
         <bpmn:flowNodeRef>Activity_0y7w37z</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1ade7z1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_05i1xzi</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1jh63mz</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0cwkl09</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0irly8l</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1l1n27s</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_10uiu5r</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1avrm77" sourceRef="Activity_06lifpr" targetRef="Gateway_1rzh82o" />
@@ -51,14 +49,6 @@
       <bpmn:outgoing>Flow_0c33wwc</bpmn:outgoing>
       <bpmn:outgoing>Flow_1ngsd3d</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:sequenceFlow id="Flow_0vz6nkq" sourceRef="Event_1l1n27s" targetRef="Activity_1vlsfq4" />
-    <bpmn:intermediateCatchEvent id="Event_1l1n27s" name="April, 13th 2022">
-      <bpmn:incoming>Flow_198um04</bpmn:incoming>
-      <bpmn:outgoing>Flow_0vz6nkq</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0lva4dh">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-04-13T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_0mjr1yx" sourceRef="Gateway_0wupwff" targetRef="Event_10uiu5r" />
     <bpmn:startEvent id="Event_10fewgd" name="Execution Started">
       <bpmn:outgoing>Flow_1olkecm</bpmn:outgoing>
@@ -83,20 +73,12 @@
       <bpmn:outgoing>Flow_198um04</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0vsiyhw" sourceRef="Event_0tmo9lh" targetRef="Activity_1vlsfq4" />
-    <bpmn:sequenceFlow id="Flow_1yq3gtm" sourceRef="Event_1jh63mz" targetRef="Activity_1vlsfq4" />
     <bpmn:parallelGateway id="Gateway_0wupwff">
       <bpmn:incoming>Flow_15n4ssn</bpmn:incoming>
       <bpmn:incoming>Flow_1l6xv77</bpmn:incoming>
       <bpmn:incoming>Flow_0r44gje</bpmn:incoming>
       <bpmn:outgoing>Flow_0mjr1yx</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:intermediateCatchEvent id="Event_10uiu5r" name="May 16th, 2022">
-      <bpmn:incoming>Flow_0mjr1yx</bpmn:incoming>
-      <bpmn:outgoing>Flow_1griy6e</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0e4fnnb">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-05-16T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
     <bpmn:callActivity id="Activity_0z5i4bl" name="Start Execution Phase 2" calledElement="ExecutionPhase2">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
@@ -111,8 +93,6 @@
     <bpmn:sequenceFlow id="Flow_0c33wwc" sourceRef="Gateway_1qk4qd0" targetRef="Activity_0cwkl09" />
     <bpmn:sequenceFlow id="Flow_1l6xv77" sourceRef="Activity_0cwkl09" targetRef="Gateway_0wupwff" />
     <bpmn:sequenceFlow id="Flow_0kt6l9h" sourceRef="Event_0g6adu2" targetRef="Activity_0y7w37z" />
-    <bpmn:sequenceFlow id="Flow_12640u6" sourceRef="Event_0irly8l" targetRef="Activity_0y7w37z" />
-    <bpmn:sequenceFlow id="Flow_1griy6e" sourceRef="Event_10uiu5r" targetRef="Activity_0y7w37z" />
     <bpmn:boundaryEvent id="Event_0tmo9lh" name="April, 13th 2022" attachedToRef="Activity_06lifpr">
       <bpmn:outgoing>Flow_0vsiyhw</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0l1c7v4">
@@ -174,14 +154,12 @@
     <bpmn:sequenceFlow id="Flow_13ff81v" sourceRef="Gateway_0s6dy9k" targetRef="Gateway_04u1b4p" />
     <bpmn:sequenceFlow id="Flow_0kphs1b" sourceRef="Gateway_04u1b4p" targetRef="Activity_1ade7z1" />
     <bpmn:task id="Activity_1vlsfq4" name="Submit Progress Report">
-      <bpmn:incoming>Flow_0vz6nkq</bpmn:incoming>
       <bpmn:incoming>Flow_0vsiyhw</bpmn:incoming>
-      <bpmn:incoming>Flow_1yq3gtm</bpmn:incoming>
+      <bpmn:incoming>Flow_0vz6nkq</bpmn:incoming>
       <bpmn:outgoing>Flow_0ensg1k</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_0y7w37z" name="Submit Final Report">
       <bpmn:incoming>Flow_0kt6l9h</bpmn:incoming>
-      <bpmn:incoming>Flow_12640u6</bpmn:incoming>
       <bpmn:incoming>Flow_1griy6e</bpmn:incoming>
       <bpmn:outgoing>Flow_1bn93c6</bpmn:outgoing>
     </bpmn:task>
@@ -201,22 +179,26 @@
       <bpmn:incoming>Flow_1azp8qb</bpmn:incoming>
       <bpmn:outgoing>Flow_1da9abm</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:boundaryEvent id="Event_1jh63mz" name="April, 13th 2022" attachedToRef="Activity_05i1xzi">
-      <bpmn:outgoing>Flow_1yq3gtm</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0ctz1iz">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-04-13T00:00:00+02:00</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
     <bpmn:task id="Activity_0cwkl09" name="Write Final Report">
       <bpmn:incoming>Flow_0c33wwc</bpmn:incoming>
       <bpmn:outgoing>Flow_1l6xv77</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:boundaryEvent id="Event_0irly8l" name="May 16th, 2022" attachedToRef="Activity_0cwkl09">
-      <bpmn:outgoing>Flow_12640u6</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1h0npwe">
+    <bpmn:intermediateCatchEvent id="Event_1l1n27s" name="April, 13th 2022">
+      <bpmn:incoming>Flow_198um04</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vz6nkq</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0lva4dh">
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-04-13T00:00:00+02:00</bpmn:timeDate>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0vz6nkq" sourceRef="Event_1l1n27s" targetRef="Activity_1vlsfq4" />
+    <bpmn:intermediateCatchEvent id="Event_10uiu5r" name="May 16th, 2022">
+      <bpmn:incoming>Flow_0mjr1yx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1griy6e</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0e4fnnb">
         <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2022-05-16T00:00:00+02:00</bpmn:timeDate>
       </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1griy6e" sourceRef="Event_10uiu5r" targetRef="Activity_0y7w37z" />
   </bpmn:process>
   <bpmn:message id="Message_0abweeq" name="Message_FinalPresentationInvitationSent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -294,11 +276,6 @@
         <di:waypoint x="1468" y="240" />
         <di:waypoint x="1520" y="240" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_12640u6_di" bpmnElement="Flow_12640u6">
-        <di:waypoint x="1228" y="370" />
-        <di:waypoint x="1570" y="370" />
-        <di:waypoint x="1570" y="280" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0kt6l9h_di" bpmnElement="Flow_0kt6l9h">
         <di:waypoint x="1228" y="100" />
         <di:waypoint x="1570" y="100" />
@@ -323,11 +300,6 @@
         <di:waypoint x="990" y="215" />
         <di:waypoint x="990" y="140" />
         <di:waypoint x="1110" y="140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1yq3gtm_di" bpmnElement="Flow_1yq3gtm">
-        <di:waypoint x="558" y="360" />
-        <di:waypoint x="850" y="360" />
-        <di:waypoint x="850" y="280" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vsiyhw_di" bpmnElement="Flow_0vsiyhw">
         <di:waypoint x="558" y="110" />
@@ -471,18 +443,6 @@
         <dc:Bounds x="522" y="92" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="502" y="62" width="77" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_16g9o4z_di" bpmnElement="Event_1jh63mz">
-        <dc:Bounds x="522" y="342" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="502" y="385" width="77" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1no8g00_di" bpmnElement="Event_0irly8l">
-        <dc:Bounds x="1192" y="352" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1172" y="395" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

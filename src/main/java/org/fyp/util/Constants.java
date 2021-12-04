@@ -21,4 +21,6 @@ public class Constants {
     public final static String MESSAGE_PROPOSALPRESENTATIONINVITESENT = "Message_ProposalPresentationInvitationSent";
     public final static String MESSAGE_FINALPRESENTATIONINVITESENT = "Message_FinalPresentationInvitationSent";
     public final static String VAR_PROPOSALMEETSREQUIREMENTS = "proposalMeetsRequirements";
+    public final static String VAR_PROJECTMEETSREQUIREMENTS = "projectMeetsRequirements";
+    public final static String VAR_CODEAPPROVED = "codeApproved";
 }

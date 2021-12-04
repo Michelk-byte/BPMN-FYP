@@ -37,8 +37,8 @@
     <bpmn:userTask id="Activity_ApplyForProject" name="Apply for Two Projects" camunda:assignee="Student">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_ProjectId1" label="Project id 2:" type="long" />
-          <camunda:formField id="FormField_ProjectId2" label="Project id 1:" type="long" />
+          <camunda:formField id="FormField_ProjectId1" label="Project id 1:" type="long" />
+          <camunda:formField id="FormField_ProjectId2" label="Project id 2:" type="long" />
           <camunda:formField id="FormField_RegistrationIds" label="Registration ids:" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>

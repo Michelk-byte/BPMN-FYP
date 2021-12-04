@@ -16,7 +16,7 @@ public class ProjectProposalPresentationController extends BaseController {
     @Autowired
     private RuntimeService runtimeService;
 
-    @PostMapping("/{process-instance-id}")
+    @GetMapping("/{process-instance-id}")
     public ResponseEntity<String> projectAllocatedStudent(
             @PathVariable(name = "process-instance-id") String processInstanceId
     ) {
@@ -28,8 +28,6 @@ public class ProjectProposalPresentationController extends BaseController {
                 WorkflowLogger.error(LOGGER, METHOD, "Process Instance Id cannot be null or empty");
                 return ResponseEntity.badRequest().body("Process Instance Id cannot be null or empty");
             }
-
-
 
             runtimeService
                     .createMessageCorrelation(Constants.MESSAGE_PROPOSALPRESENTATIONINVITESENT)

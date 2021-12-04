@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1akrajz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1akrajz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_ExecutionPhase1">
     <bpmn:participant id="Participant_1ogo3oe" name="USJ" processRef="ExecutionPhase1" />
   </bpmn:collaboration>
@@ -44,7 +44,7 @@
       <bpmn:incoming>Flow_16wxso5</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0nny4m8" name="Yes" sourceRef="Gateway_0mxrlje" targetRef="Gateway_1vfp464">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{ProjectMeetsRequirements}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{projectMeetsRequirements}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ook0oc" sourceRef="Gateway_1mzoup6" targetRef="Activity_1691em1" />
     <bpmn:sequenceFlow id="Flow_0vjnmck" sourceRef="Activity_0mt9hos" targetRef="Gateway_17dbkpx" />
@@ -77,7 +77,7 @@
       <bpmn:outgoing>Flow_12mnv8s</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1a4jbmj" name="No" sourceRef="Gateway_0mxrlje" targetRef="Activity_1bjxafx">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not ProjectMeetsRequirements}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not projectMeetsRequirements}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1lx0vdy" sourceRef="Activity_1bjxafx" targetRef="Gateway_1vfp464" />
     <bpmn:task id="Activity_1bjxafx" name="Modify changes">
@@ -85,10 +85,10 @@
       <bpmn:outgoing>Flow_1lx0vdy</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0qwpzkf" sourceRef="Activity_1691em1" targetRef="Gateway_0mxrlje" />
-    <bpmn:task id="Activity_1691em1" name="Check Changes">
+    <bpmn:serviceTask id="Activity_1691em1" name="Check Changes" camunda:delegateExpression="#{CheckChanges}">
       <bpmn:incoming>Flow_1ook0oc</bpmn:incoming>
       <bpmn:outgoing>Flow_0qwpzkf</bpmn:outgoing>
-    </bpmn:task>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_1iexo16" name="Message_RequirementsReviewalSent" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -102,6 +102,11 @@
       <bpmndi:BPMNShape id="Lane_13neasr_di" bpmnElement="Lane_13neasr" isHorizontal="true">
         <dc:Bounds x="190" y="550" width="930" height="140" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0qwpzkf_di" bpmnElement="Flow_0qwpzkf">
+        <di:waypoint x="970" y="610" />
+        <di:waypoint x="890" y="610" />
+        <di:waypoint x="890" y="495" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1lx0vdy_di" bpmnElement="Flow_1lx0vdy">
         <di:waypoint x="650" y="470" />
         <di:waypoint x="595" y="470" />
@@ -163,11 +168,6 @@
           <dc:Bounds x="729" y="373" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0qwpzkf_di" bpmnElement="Flow_0qwpzkf">
-        <di:waypoint x="970" y="610" />
-        <di:waypoint x="890" y="610" />
-        <di:waypoint x="890" y="495" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_05dig4h_di" bpmnElement="Gateway_17dbkpx">
         <dc:Bounds x="655" y="202" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -210,7 +210,7 @@
       <bpmndi:BPMNShape id="Activity_147g4yc_di" bpmnElement="Activity_1bjxafx">
         <dc:Bounds x="650" y="430" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1691em1_di" bpmnElement="Activity_1691em1">
+      <bpmndi:BPMNShape id="Activity_0ci1ezu_di" bpmnElement="Activity_1691em1">
         <dc:Bounds x="970" y="570" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

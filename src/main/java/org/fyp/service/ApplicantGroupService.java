@@ -1,7 +1,6 @@
 package org.fyp.service;
 
 import org.fyp.entity.ApplicantGroup;
-import org.fyp.entity.Project;
 import org.fyp.repository.ApplicantGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +23,12 @@ public class ApplicantGroupService {
     }
 
     public ApplicantGroup getRandomUnassignedGroupByProjectId(long projectId) {
-        List<ApplicantGroup> groups = applicantGroupRepository.findByProjectId1AndAssignedTrue(projectId);
+        List<ApplicantGroup> groups = applicantGroupRepository.findByProjectId1AndAssignedFalse(projectId);
         if (groups.size() == 0) {
-            groups = applicantGroupRepository.findByProjectId2AndAssignedTrue(projectId);
+
+            groups = applicantGroupRepository.findByProjectId2AndAssignedFalse(projectId);
         }
+
         Random rand = new Random();
         ApplicantGroup chosenGroup = groups.get(rand.nextInt(groups.size()));
         return chosenGroup;
