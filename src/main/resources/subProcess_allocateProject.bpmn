@@ -9,10 +9,10 @@
         <bpmn:flowNodeRef>Activity_CheckConflicts</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0r223kq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_InformAdvisor</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_AssignProject</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1viqzrp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_ProjectApplicationReceived</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_PickRandomGroup</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1viqzrp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_AssignProject</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0yisjdj" name="Advisor">
         <bpmn:flowNodeRef>Gateway_11xutl2</bpmn:flowNodeRef>
@@ -75,15 +75,6 @@
     <bpmn:endEvent id="Event_ProjectAllocated" name="Project Allocated">
       <bpmn:incoming>Flow_1xtaz06</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sendTask id="Activity_AssignProject" name="Assign Project" camunda:delegateExpression="#{AssignProject}">
-      <bpmn:incoming>Flow_02ndtkj</bpmn:incoming>
-      <bpmn:outgoing>Flow_0j3akno</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:exclusiveGateway id="Gateway_1viqzrp">
-      <bpmn:incoming>Flow_0lz0sol</bpmn:incoming>
-      <bpmn:incoming>Flow_0eylvxe</bpmn:incoming>
-      <bpmn:outgoing>Flow_02ndtkj</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:startEvent id="Event_ProjectApplicationReceived" name="Project Allocation Started">
       <bpmn:outgoing>Flow_1xre2ul</bpmn:outgoing>
     </bpmn:startEvent>
@@ -130,6 +121,15 @@
     <bpmn:sequenceFlow id="Flow_1rl5kct" sourceRef="Activity_SignProjectAdvisor" targetRef="Gateway_1sl571f" />
     <bpmn:sequenceFlow id="Flow_0oiag1e" sourceRef="Activity_SignProjectStudent" targetRef="Gateway_1sl571f" />
     <bpmn:sequenceFlow id="Flow_1pj5elj" sourceRef="Gateway_1gf6h48" targetRef="Event_0l0pjeb" />
+    <bpmn:exclusiveGateway id="Gateway_1viqzrp">
+      <bpmn:incoming>Flow_0lz0sol</bpmn:incoming>
+      <bpmn:incoming>Flow_0eylvxe</bpmn:incoming>
+      <bpmn:outgoing>Flow_02ndtkj</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="Activity_AssignProject" name="Assign Project" camunda:delegateExpression="#{AssignProject}">
+      <bpmn:incoming>Flow_02ndtkj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0j3akno</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmn:message id="Message_1x5xct9" name="Message_ProjectApplicationReceived" />
   <bpmn:message id="Message_078ero8" name="Message_AdvisorProjectAssigned" />
@@ -139,7 +139,7 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_allocateProject">
       <bpmndi:BPMNShape id="Participant_0q75aca_di" bpmnElement="Participant_0q75aca" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="1720" height="740" />
+        <dc:Bounds x="160" y="80" width="1720" height="530" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1o72gzq_di" bpmnElement="Lane_1o72gzq" isHorizontal="true">
         <dc:Bounds x="190" y="80" width="1690" height="140" />
@@ -148,7 +148,7 @@
         <dc:Bounds x="190" y="220" width="1690" height="134" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0cdo89g_di" bpmnElement="Lane_0cdo89g" isHorizontal="true">
-        <dc:Bounds x="190" y="354" width="1690" height="466" />
+        <dc:Bounds x="190" y="354" width="1690" height="256" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1pj5elj_di" bpmnElement="Flow_1pj5elj">
         <di:waypoint x="1335" y="280" />
@@ -203,21 +203,19 @@
         <di:waypoint x="420" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0lz0sol_di" bpmnElement="Flow_0lz0sol">
-        <di:waypoint x="600" y="565" />
-        <di:waypoint x="600" y="620" />
-        <di:waypoint x="1015" y="620" />
+        <di:waypoint x="625" y="540" />
+        <di:waypoint x="1015" y="540" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="630" y="593" width="60" height="14" />
+          <dc:Bounds x="651" y="513" width="60" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02ndtkj_di" bpmnElement="Flow_02ndtkj">
-        <di:waypoint x="1040" y="645" />
-        <di:waypoint x="1040" y="740" />
-        <di:waypoint x="1170" y="740" />
+        <di:waypoint x="1065" y="540" />
+        <di:waypoint x="1170" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0j3akno_di" bpmnElement="Flow_0j3akno">
-        <di:waypoint x="1270" y="740" />
-        <di:waypoint x="1310" y="740" />
+        <di:waypoint x="1270" y="540" />
+        <di:waypoint x="1310" y="540" />
         <di:waypoint x="1310" y="305" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0elg3kj_di" bpmnElement="Flow_0elg3kj">
@@ -247,7 +245,7 @@
       <bpmndi:BPMNEdge id="Flow_0eylvxe_di" bpmnElement="Flow_0eylvxe">
         <di:waypoint x="1015" y="340" />
         <di:waypoint x="1040" y="340" />
-        <di:waypoint x="1040" y="595" />
+        <di:waypoint x="1040" y="515" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_11xutl2_di" bpmnElement="Gateway_11xutl2" isMarkerVisible="true">
         <dc:Bounds x="695" y="315" width="50" height="50" />
@@ -288,16 +286,10 @@
           <dc:Bounds x="1779" y="315" width="83" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1kg76mc_di" bpmnElement="Activity_AssignProject">
-        <dc:Bounds x="1170" y="700" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1viqzrp_di" bpmnElement="Gateway_1viqzrp" isMarkerVisible="true">
-        <dc:Bounds x="1015" y="595" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0r41vk0_di" bpmnElement="Event_ProjectApplicationReceived">
         <dc:Bounds x="262" y="522" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="257" y="586" width="86" height="27" />
+          <dc:Bounds x="237" y="566" width="86" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0eg3qvk_di" bpmnElement="Activity_ChooseGroup">
@@ -311,6 +303,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0jxtdcv_di" bpmnElement="Activity_SignProjectAdvisor">
         <dc:Bounds x="1510" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1viqzrp_di" bpmnElement="Gateway_1viqzrp" isMarkerVisible="true">
+        <dc:Bounds x="1015" y="515" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kg76mc_di" bpmnElement="Activity_AssignProject">
+        <dc:Bounds x="1170" y="500" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

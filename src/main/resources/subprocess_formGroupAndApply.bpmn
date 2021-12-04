@@ -62,7 +62,7 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_AllocateGroup">
       <bpmndi:BPMNShape id="Participant_0g0g0ex_di" bpmnElement="Participant_0g0g0ex" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="1270" height="350" />
+        <dc:Bounds x="160" y="80" width="1070" height="350" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1ijd25a_di" bpmnElement="Flow_1ijd25a">
         <di:waypoint x="1050" y="250" />
