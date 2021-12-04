@@ -122,3 +122,27 @@ The user task "Apply for Two Projects" is where the instance comes to a halt. As
 
 ![img_21.png](img/img_21.png)
 
+After completing the above form, the process instance will continue on and enter the activity “Allocate Project”.
+
+![img.png](img/img__11.png)
+
+After passing through multiple service tasks and a message task “Assign Project” where a project is assigned to a group depending on conflicts and preferences, the process instance will fork and stop at the two message events “Project Signed”. They will be awaiting API requests coming from a student and an advisor simulating sent messages containing signatures.
+27. Open swagger a call the two APIs  as shown below (use the process instance id as a parameter)
+
+![img_2.png](img/img__3.png)
+
+Next, the process instance id will exit the activity and pass through “Define Problem” and ““Prepare Proposal” activities and then enter “Review Proposal” activity. If the review passes, the process instance id will go on to the “Present and Publish Proposal” activity as shown below.
+
+![img_3.png](img/img___4.png)
+
+Here the process instance stops and will continue on upon reception of a message (via API Http request) or a 1 week deadline.
+Let’s send the API request.
+
+![img_5.png](img/img__5.png)
+
+Note that if the review does not pass, the process instance stops inside “Review Proposal” and awaits an API message that represents an advisor sending back comments to students so that they adjust their proposal.
+
+![img_6.png](img/img__6.png)
+
+We now enter the “Execute Project” composed of “Execute Project Phase 1” and “Execute Project” phase 2 activities. The process instance stops for the last time at an event based gateway and will continuon upon reception of a message “Final Presentation Invite Sent” or after a week. Let us send one final api call (representing a message from the FYP Committee to the Student inviting him to present his final project).
+
