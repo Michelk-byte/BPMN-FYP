@@ -10,7 +10,7 @@ A FYP Process is a step-by-step guide for completing our senior project. FYP is 
 ![img.png](img/img.png)
 
 
-s
+
 
 This project was built using Java Spring Boot functionalities such as JPA and Rest Api Controllers, as well as integrated with Camunda's various features.
 Inside IntelliJ, it was set up as an Apache Maven Project. 
