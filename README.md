@@ -3,7 +3,7 @@ A Mini-Project Process Application for [Camunda BPM](http://docs.camunda.org) to
 A FYP Process is a step-by-step guide for completing our senior project. FYP is an academic task that each undergraduate student must complete individually in order to graduate with the necessary attributions.
 
 ## Camunda Modeled FYP Process.
-![img.png](img/process.png)
+![img.png](img/img_121.png)
 
 
 ## Original FYP Process to be modeled.
